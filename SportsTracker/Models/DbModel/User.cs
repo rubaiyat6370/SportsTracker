@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
-namespace SportsTracker.Models
+namespace SportsTracker.Models.DbModel
 {
     [Table("User")]
     public class User
