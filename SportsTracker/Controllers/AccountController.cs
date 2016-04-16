@@ -263,7 +263,7 @@ namespace SportsTracker.Controllers
             if (ModelState.IsValid)
             {
                 // Insert a new user into the database
-                using (SportsTrackerContext db = new SportsTrackerContext())
+                using (var db = new SportsTrackerContext())
                 {
                     UserProfile user = db.UserProfiles.FirstOrDefault(u => u.UserName.ToLower() == model.UserName.ToLower());
                     // Check if user already exists
