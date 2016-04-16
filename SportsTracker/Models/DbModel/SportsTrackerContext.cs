@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Web;
+using SportsTracker.Models.DbModel;
 
-namespace SportsTracker.Models
+namespace SportsTracker.Models.DbModel
 {
     public class SportsTrackerContext : DbContext
     {
