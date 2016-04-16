@@ -8,15 +8,7 @@ using System.Web.Security;
 
 namespace SportsTracker.Models
 {
-    public class SportsTrackerContext : DbContext
-    {
-        public SportsTrackerContext()
-            : base("SportsTrackerConnection")
-        {
-        }
-
-        public DbSet<UserProfile> UserProfiles { get; set; }
-    }
+   
 
     [Table("UserProfile")]
     public class UserProfile
