@@ -685,7 +685,6 @@
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-    <Content Include="ClassDiagram1.cd" />
     <Content Include="assests\bower_components\bootstrap-social\.bower.json" />
     <Content Include="assests\bower_components\bootstrap-social\.editorconfig" />
     <Content Include="assests\bower_components\bootstrap-social\.gitignore" />

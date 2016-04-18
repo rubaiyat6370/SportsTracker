@@ -40,6 +40,24 @@ namespace SportsTracker.Controllers
             return View(postviewModels);
         }
 
+        public ActionResult MyPosts()
+        {
+            var postviewModels = new List<PostViewModel>();
+            var posts = _postRepository.GetMyPosts();
+            foreach (var post in posts)
+            {
+                postviewModels.Add(new PostViewModel
+                {
+                    Id = post.Id,
+                    Title = post.Title,
+                    Description = post.PostDescription,
+                    User = _userRepository.GetUserById(post.UserId),
+                    CreatedOn = post.CreatedOn
+                });
+            }
+            return View("~/Views/Post/Index.cshtml", postviewModels);
+        }
+
 
         //
         // GET: /Post/Details/5
