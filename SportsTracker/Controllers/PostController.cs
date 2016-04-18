@@ -1,18 +1,42 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using SportsTracker.Filters;
+using SportsTracker.Models.DbModel;
+using SportsTracker.Models.Repository;
+using SportsTracker.Models.ViewModel;
+using WebMatrix.WebData;
 
 namespace SportsTracker.Controllers
 {
+    [InitializeSimpleMembership]
     public class PostController : Controller
     {
+        readonly PostRepository _postRepository = new PostRepository();
+        readonly UserRepository _userRepository = new UserRepository();
         //
         // GET: /Post/
 
         public ActionResult Index()
         {
+            var postviewModels = new List<PostViewModel>();
+            var posts = _postRepository.GetLatestPosts(10).ToList();
+            foreach (var post in posts)
+            {
+                SimpleMembershipProvider provider = new SimpleMembershipProvider();
+                postviewModels.Add(new PostViewModel
+                {
+                    Id = post.Id,
+                    Title = post.Title,
+                    Description = post.PostDescription,
+                    User = _userRepository.GetUserById(post.UserId),
+                    CreatedOn = post.CreatedOn
+                });
+            }
             return View();
         }
 
@@ -21,7 +45,12 @@ namespace SportsTracker.Controllers
 
         public ActionResult Details(int id)
         {
-            return View();
+            Post post = _postRepository.GetPostById(id);
+            if (post == null)
+            {
+                return HttpNotFound();
+            }
+            return View(post);
         }
 
         //
@@ -36,70 +65,81 @@ namespace SportsTracker.Controllers
         // POST: /Post/Create
 
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(Post post)
         {
-            try
+            if (WebSecurity.CurrentUserId > 0)
             {
-                // TODO: Add insert logic here
-
+                post.UserId = WebSecurity.CurrentUserId;
+                post.CreatedOn = DateTime.Now;
+                _postRepository.AddPost(post);
                 return RedirectToAction("Index");
             }
-            catch
-            {
-                return View();
-            }
+            return RedirectToAction("Login", "Account");
         }
 
         //
         // GET: /Post/Edit/5
 
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int id = 0)
         {
-            return View();
+            var postReository = new PostRepository();
+            var post = postReository.GetPostById(id);
+            return View(post);
         }
 
         //
         // POST: /Post/Edit/5
 
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(Post post)
         {
-            try
+            var postReository = new PostRepository();
+            if (WebSecurity.CurrentUserId > 0)
             {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
+                post.UserId = WebSecurity.CurrentUserId;
+                if (postReository.EditPost(post))
+                {
+                    return RedirectToAction("Index");
+                }
+                return View(post);
             }
-            catch
-            {
-                return View();
-            }
+            return RedirectToAction("Login", "Account");
         }
 
         //
         // GET: /Post/Delete/5
 
-        public ActionResult Delete(int id)
+        public ActionResult Delete(int id )
         {
-            return View();
+            Post post = _postRepository.GetPostById(id);
+            if (post == null)
+            {
+                return HttpNotFound();
+            }
+            return View(post);
         }
 
         //
         // POST: /Post/Delete/5
 
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
         {
-            try
+            Post post = _postRepository.GetPostById(id);
+            if (WebSecurity.CurrentUserId > 0)
             {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
+                if (_postRepository.DeletePost(post))
+                {
+                    return RedirectToAction("Index");
+                }
+                return View(post);
             }
-            catch
-            {
-                return View();
-            }
+            return RedirectToAction("Login", "Account");
         }
+
+      
     }
 }
