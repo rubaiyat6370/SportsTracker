@@ -1,0 +1,15 @@
+--- SportsTracker.csproj
++++ SportsTracker.csproj
+@@ -168,6 +168,12 @@
+       <DependentUpon>Global.asax</DependentUpon>
+     </Compile>
+     <Compile Include="Models\AccountModels.cs" />
++    <Compile Include="Models\DbModel\Group.cs" />
++    <Compile Include="Models\DbModel\Location.cs" />
++    <Compile Include="Models\DbModel\Post.cs" />
++    <Compile Include="Models\DbModel\SportsTrackerContext.cs" />
++    <Compile Include="Models\DbModel\User.cs" />
++    <Compile Include="Models\DbModel\UserGroupRelation.cs" />
+     <Compile Include="Properties\AssemblyInfo.cs" />
+   </ItemGroup>
+   <ItemGroup>

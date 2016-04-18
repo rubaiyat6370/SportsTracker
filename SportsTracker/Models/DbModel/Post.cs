@@ -11,7 +11,9 @@ namespace SportsTracker.Models.DbModel
     {
         public int Id { get; set; }
         public int GroupId { get; set; }
-        public string PostDescript { get; set; }
+        public string Title { get; set; }
+        public DateTime CreatedOn { get; set; }
+        public string PostDescription { get; set; }
         public int UserId { get; set; }
     }
 }
