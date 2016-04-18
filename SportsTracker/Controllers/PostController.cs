@@ -37,8 +37,9 @@ namespace SportsTracker.Controllers
                     CreatedOn = post.CreatedOn
                 });
             }
-            return View();
+            return View(postviewModels);
         }
+
 
         //
         // GET: /Post/Details/5

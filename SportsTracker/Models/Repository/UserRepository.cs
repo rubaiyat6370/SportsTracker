@@ -20,8 +20,6 @@ namespace SportsTracker.Models.Repository
         public bool AddUser(User user)
         {
             sportsTrackerContext.Users.Add(user);
-            /*int returnResult = onlineBazarEntities.SaveChanges();
-            return returnResult > 0;*/
             return sportsTrackerContext.SaveChanges() > 0;
         }
 

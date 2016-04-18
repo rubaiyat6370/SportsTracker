@@ -40,10 +40,15 @@ namespace SportsTracker.Models.Repository
         }
 
         //select * from user
-        public List<Post> GetPostsList()
+        public IQueryable<Post> GetPostsQuery()
         {
-            return _db.Posts.ToList();
+            return _db.Posts;
         }
+
+        public List<Post> GetMyPosts()
+        {
+            return _db.Posts.Where(p => p.UserId == WebSecurity.CurrentUserId).ToList();
+        } 
 
         public IQueryable<Post> GetLatestPosts(int numberOfPost)
         {
