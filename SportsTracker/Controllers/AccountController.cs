@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using System.Web.Security;
 using DotNetOpenAuth.AspNet;
 using Microsoft.Web.WebPages.OAuth;
+using SportsTracker.Models.DbModel;
 using WebMatrix.WebData;
 using SportsTracker.Filters;
 using SportsTracker.Models;
