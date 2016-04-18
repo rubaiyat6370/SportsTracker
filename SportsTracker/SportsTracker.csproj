@@ -163,11 +163,22 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PostController.cs" />
+    <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\Calorie.cs" />
+    <Compile Include="Models\DbModel\Group.cs" />
+    <Compile Include="Models\DbModel\Location.cs" />
+    <Compile Include="Models\DbModel\Post.cs" />
+    <Compile Include="Models\DbModel\SportsTrackerContext.cs" />
+    <Compile Include="Models\DbModel\User.cs" />
+    <Compile Include="Models\DbModel\UserGroupRelation.cs" />
+    <Compile Include="Models\Repository\PostRepository.cs" />
+    <Compile Include="Models\Repository\UserRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -227,6 +238,7 @@
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="ClassDiagram1.cd" />
     <None Include="Properties\PublishProfiles\SportTracker.pubxml" />
     <None Include="Scripts\jquery-1.7.1.intellisense.js" />
     <Content Include="Scripts\jquery-1.7.1.js" />
@@ -282,12 +294,20 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Web.config" />
+    <Content Include="Views\Test\GetInfoForCalorie.cshtml" />
+    <Content Include="Views\Test\CalculateCalorie.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SportTrackerDAL\SportTrackerDAL.csproj">
+      <Project>{de89548e-c693-4c8b-a176-27a58dbb8f83}</Project>
+      <Name>SportTrackerDAL</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

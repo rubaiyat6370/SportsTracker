@@ -1,0 +1,59 @@
+﻿@{
+    ViewBag.Title = "GetInfoForCalorie";
+}
+
+<h2>Get Information For Calculation</h2>
+<head>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+</head>
+
+<div class="container">
+    
+<h2>Add Your Information</h2>
+
+<form role="form" method="POST" action="CalculateCalorie">
+    <div class="form-group">
+        <label for="weight">Weight:</label>
+        <input type="number" step="0.01" name="Weight" id="weight" placeholder="Enter Your Weight in Kg" class="form-control"/>
+    </div>
+    <div class="form-group">
+        <label for="Height">Height:</label>
+        <input type="number" step="0.01" name="Height" id="height" placeholder="Enter Your Height in meter" class="form-control"/>
+    </div>
+    
+    <div class="form-group">
+        <label for="Age">Age:</label>
+        <input type="number" name="Age" id="age" placeholder="Enter Your Age" class="form-control"/>
+    </div>
+    
+    <div class="form-group">
+        <label for="Gender">Gender:</label>
+        <div class="radio">
+            <input type="radio" name="Gender" id="Gender" value="Female" />Female<br/>
+            <input type="radio" name="Gender" id="Gender" value="Male" />Male<br/>
+        </div>
+    </div>
+    
+    <div class="form-group">
+        <label for="Sports">Sports Type:</label>
+        <div class="radio">
+            <input type="radio" name="Sports" id="Sports" value="Cycling" />Cycling<br/>
+            <input type="radio" name="Sports" id="Sports" value="Running"/>Running<br/>
+            <input type="radio" name="Sports" id="Sports" value="Walking" />Walking<br/>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="Distance">Distance:</label>
+        <input type="number" step="0.01" name="Distance" id="distance" placeholder="Enter Your Distance in Km" class="form-control"/>
+    </div>
+    
+    <div class="form-group">
+        <label for="Duration">Duration:</label>
+        <input type="number" step="0.01" name="Duration" id="duration" placeholder="Enter Your Duration of Activity in Hour" class="form-control"/>
+    </div>
+    
+    <button type="submit" class="btn btn-default">Submit</button>
+</form>
+
+</div>
