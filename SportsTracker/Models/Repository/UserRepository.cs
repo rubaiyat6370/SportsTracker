@@ -48,7 +48,7 @@ namespace SportsTracker.Models.Repository
         //select * from user where id = 1
         public User GetUserById(int userId)
         {
-            return db.Users.FirstOrDefault(u => u.Id == userId);
+            return db.Users.SingleOrDefault(u => u.Id == userId);
         }
     }
 }
