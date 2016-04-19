@@ -1,0 +1,65 @@
+﻿@model SportsTracker.Models.Repository.UserRepository
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Complete Your Profile</h2>
+<fieldset>
+    <form method="POST" action="Create">
+        <div>
+            <lebel for="FirstName"><strong>First Name</strong></lebel>
+            <br/>
+            <input type="text" name="Firstname"/>
+        </div>
+
+        <div>
+            <lebel for="LastName"><strong>Last Name</strong></lebel>
+            <br/>
+            <input type="text" name="Lastname"/>
+        </div>
+
+        <div>
+            <lebel for="Gender"><strong>Gender</strong></lebel>
+            <br/>
+            <input type="text" name="Gender"/>
+        </div>
+
+
+
+        <div>
+            <lebel for="Age"><strong>Age</strong></lebel>
+            <br/>
+            <input type="text" name="Age"/>
+        </div>
+
+
+        <div>
+            <lebel for="Weight"><strong>Weight</strong></lebel>
+            <br/>
+            <input type="text" name="Weight"/>
+        </div>
+
+
+        <div >
+            <label for="email"><strong>Email</strong></label>
+            <br />
+            <input type="email" id="email" placeholder="Enter email" name="Email">
+        </div>
+
+        <div >
+            <lebel for="Birthdate"><strong>Birthdate</strong></lebel>
+            <br />
+            <input type="date" name="Birthdate" placeholder="Date of Birth">
+        </div>
+
+        <p>
+            <input type="submit" value="Submit"/>
+        </p>
+    </form>
+</fieldset>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

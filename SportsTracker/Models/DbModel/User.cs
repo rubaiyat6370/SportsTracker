@@ -10,8 +10,9 @@ namespace SportsTracker.Models.DbModel
     public class User
     {
         public int Id { get; set; }
-        public int Age { get; set; }
-        public decimal Weight { get; set; }
+        public int? Age { get; set; }
+        public decimal? Weight { get; set; }
+        public string Gender { get; set; }
         public string Email { get; set; }
         public DateTime? Birthdate { get; set; }
         public int UserProfileId { get; set; }
