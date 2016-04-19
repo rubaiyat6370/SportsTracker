@@ -178,6 +178,7 @@
     <Compile Include="Models\DbModel\SportsTrackerContext.cs" />
     <Compile Include="Models\DbModel\User.cs" />
     <Compile Include="Models\DbModel\UserGroupRelation.cs" />
+    <Compile Include="Models\Repository\GroupRepository.cs" />
     <Compile Include="Models\Repository\PostRepository.cs" />
     <Compile Include="Models\Repository\UserRepository.cs" />
     <Compile Include="Models\ViewModel\PostViewModel.cs" />
@@ -187,6 +188,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\SportsTracker.mdf" />
+    <Content Include="App_Data\SportsTracker_log.ldf">
+      <DependentUpon>SportsTracker.mdf</DependentUpon>
+    </Content>
     <Content Include="assests\bower_components\bootstrap-social\bootstrap-social.css" />
     <Content Include="assests\bower_components\bootstrap\dist\css\bootstrap-theme.css" />
     <Content Include="assests\bower_components\bootstrap\dist\css\bootstrap-theme.min.css" />
@@ -1069,9 +1074,7 @@
     <Content Include="Views\Post\Delete.cshtml" />
     <Content Include="Views\Shared\Copy of _Layout.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>

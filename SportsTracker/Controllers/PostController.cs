@@ -27,7 +27,7 @@ namespace SportsTracker.Controllers
             var posts = _postRepository.GetLatestPosts(10).ToList();
             foreach (var post in posts)
             {
-                SimpleMembershipProvider provider = new SimpleMembershipProvider();
+                //SimpleMembershipProvider provider = new SimpleMembershipProvider();
                 postviewModels.Add(new PostViewModel
                 {
                     Id = post.Id,
