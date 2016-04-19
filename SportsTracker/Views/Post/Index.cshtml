@@ -1,10 +1,10 @@
 ﻿@model IEnumerable<SportsTracker.Models.ViewModel.PostViewModel>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Recent Posts";
 }
 
-<h2>Index</h2>
+<h2>Recent Posts</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -15,9 +15,9 @@
     {
         <div class="row">
 
-            <div class="col-md-4">
+            @*<div class="col-md-4">
                 @post.User.Firstname @post.User.Lastname
-            </div>
+            </div>*@
             <div class="col-md-8">
                 <div class="row">
                     @post.Title
