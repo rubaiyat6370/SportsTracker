@@ -1,0 +1,71 @@
+﻿@model IEnumerable<SportsTracker.Models.ViewModel.PostViewModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+<div>
+    @foreach (var post in Model)
+    {
+        <div class="row">
+
+            <div class="col-md-4">
+                @post.User.UserName
+            </div>
+            <div class="col-md-8">
+                <div class="row">
+                    @post.Title
+                </div>
+                <div class="row">
+                    @post.Description
+                </div>
+                <div class="row">
+                    @post.CreatedOn
+                </div>
+            </div>
+        </div>
+        <br />
+        
+    }
+</div>
+
+@*<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.GroupId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PostDescription)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserId)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.GroupId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PostDescription)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserId)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>*@
