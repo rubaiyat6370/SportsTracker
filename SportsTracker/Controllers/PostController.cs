@@ -92,9 +92,10 @@ namespace SportsTracker.Controllers
                 post.UserId = WebSecurity.CurrentUserId;
                 post.CreatedOn = DateTime.Now;
                 _postRepository.AddPost(post);
-                return RedirectToAction("Index");
+                return RedirectToAction("Index","Home");
             }
             return RedirectToAction("Login", "Account");
+           
         }
 
         //

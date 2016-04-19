@@ -40,9 +40,9 @@ namespace SportsTracker.Models.Repository
         }
 
         //select * from user
-        public IQueryable<Post> GetPostsQuery()
+        public List<Post> GetPostsQuery()
         {
-            return _db.Posts;
+            return _db.Posts.ToList();
         }
 
         public List<Post> GetMyPosts()
