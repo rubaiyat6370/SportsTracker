@@ -10,13 +10,13 @@
     @Html.ActionLink("Create New", "Create")
 </p>
 
-<div>
+<div class="container">
     @foreach (var post in Model)
     {
         <div class="row">
 
             <div class="col-md-4">
-                @post.User.UserName
+                @post.User.Firstname @post.User.Lastname
             </div>
             <div class="col-md-8">
                 <div class="row">
