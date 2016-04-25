@@ -10,24 +10,20 @@
     <legend>Post</legend>
 
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.GroupId)
+         <label for="Title"><strong>Post Title</strong></label>
     </div>
     <div class="display-field">
-        @Html.DisplayFor(model => model.GroupId)
+        @Html.DisplayFor(model => model.Title)
     </div>
 
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.PostDescript)
+        <label for="Description"><strong>Post Description</strong></label>
+    </div>
+    <div class="display-field " >
+        @Html.DisplayFor(model => model.PostDescription)
     </div>
     <div class="display-field">
-        @Html.DisplayFor(model => model.PostDescript)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.UserId)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.UserId)
+        @Html.DisplayFor(model => model.CreatedOn)
     </div>
 </fieldset>
 <p>

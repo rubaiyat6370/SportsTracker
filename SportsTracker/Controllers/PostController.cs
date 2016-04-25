@@ -55,7 +55,8 @@ namespace SportsTracker.Controllers
                     CreatedOn = post.CreatedOn
                 });
             }
-            return View("~/Views/Post/Index.cshtml", postviewModels);
+            //return View("~/Views/Post/Index.cshtml", postviewModels);
+            return View(postviewModels);
         }
 
 
@@ -89,10 +90,12 @@ namespace SportsTracker.Controllers
         {
             if (WebSecurity.CurrentUserId > 0)
             {
-                post.UserId = WebSecurity.CurrentUserId;
-                post.CreatedOn = DateTime.Now;
-                _postRepository.AddPost(post);
-                return RedirectToAction("Index","Home");
+                
+                    post.UserId = WebSecurity.CurrentUserId;
+                    post.CreatedOn = DateTime.Now;
+                    _postRepository.AddPost(post);
+                    return RedirectToAction("Index");
+                
             }
             return RedirectToAction("Login", "Account");
            
@@ -119,9 +122,10 @@ namespace SportsTracker.Controllers
             if (WebSecurity.CurrentUserId > 0)
             {
                 post.UserId = WebSecurity.CurrentUserId;
+                post.CreatedOn = WebSecurity.GetCreateDate(WebSecurity.CurrentUserName);
                 if (postReository.EditPost(post))
                 {
-                    return RedirectToAction("Index");
+                    return RedirectToAction("MyPosts");
                 }
                 return View(post);
             }

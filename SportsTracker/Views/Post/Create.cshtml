@@ -16,15 +16,17 @@
 
 
         <form method="POST" action="Create">
-            <div>
-                <lebel for="PostTitle"><strong>Title</strong></lebel>
-                <br/>
-                <input type="text" name="Title"/>
+            <div class="editor-field">
+                <lebel for="Title"><strong>Title</strong></lebel>
+                <br />
+                <input type="text" name="Title" required="required" />
+                <span class="field-validation-valid" data-valmsg-for="Title" data-valmsg-replace="true"></span>
             </div>
-            <div>
-                <lebel for="PostDescription"><strong>Description</strong></lebel>
+            <div class="editor-field" >
+                <label for="PostDescription"><strong>Description</strong></label>
                 <br/>
-                <textarea placeholder="Write your thoughts...." name="PostDescription"></textarea>
+                <textarea placeholder="Write your thoughts...." name="PostDescription" required="required"></textarea>
+                <span class="field-validation-valid" data-valmsg-for="PostDescription" data-valmsg-replace="true"></span>
             </div>
 
 
