@@ -4,36 +4,45 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+
+@*<p>
+        @Html.ActionLink("Create New", "Create")
+    </p>*@
 
 <div class="container">
-    @foreach (var post in Model)
-    {
-        <div class="row">
-
-            <div class="col-md-4">
-                @post.User.Firstname @post.User.Lastname
-            </div>
-            <div class="col-md-8">
-                <div class="row">
-                    @post.Title
-                </div>
-                <div class="row">
-                    @post.Description
-                </div>
-                <div class="row">
-                    @post.CreatedOn
-                </div>
-            </div>
+    <div class="panel-group">
+        <div class="panel">
+            <h2 class="panel-heading" align="justify">Recent Posts</h2>
         </div>
-        <br />
-        
-    }
+        <div class="panel-body">
+            @foreach (var post in Model)
+            {
+                <div class="row">
+
+                    <div class="col-md-4">
+                        @post.User.Firstname @post.User.Lastname
+                    </div>
+                    <div class="col-md-8">
+                        <div class="row">
+                            @post.Title
+                        </div>
+                        <div class="row">
+                            @post.Description
+                        </div>
+                        <div class="row">
+                            @post.CreatedOn
+                        </div>
+
+                    </div>
+                </div>
+                <br />
+
+            }
+        </div>
+    </div>
 </div>
+
 
 @*<table>
     <tr>

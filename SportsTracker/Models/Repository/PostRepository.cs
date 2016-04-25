@@ -26,6 +26,7 @@ namespace SportsTracker.Models.Repository
         //update user set userName = 'a' where id = 1
         public bool EditPost(Post post)
         {
+            
             _db.Posts.Attach(post);
             _db.Entry(post).State = EntityState.Modified;
             return _db.SaveChanges() > 0;

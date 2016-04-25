@@ -179,7 +179,6 @@
     <Compile Include="Models\DbModel\SportsTrackerContext.cs" />
     <Compile Include="Models\DbModel\User.cs" />
     <Compile Include="Models\DbModel\UserGroupRelation.cs" />
-    <Compile Include="Models\Repository\GroupRepository.cs" />
     <Compile Include="Models\Repository\PostRepository.cs" />
     <Compile Include="Models\Repository\UserRepository.cs" />
     <Compile Include="Models\ViewModel\PostViewModel.cs" />
@@ -1017,6 +1016,7 @@
     <Content Include="Views\User\Edit.cshtml" />
     <Content Include="Views\User\Delete.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
+    <Content Include="Views\Post\MyPosts.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

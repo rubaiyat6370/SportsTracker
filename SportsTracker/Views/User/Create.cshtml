@@ -3,63 +3,97 @@
 @{
     ViewBag.Title = "Create";
 }
+<div class="container">
+    <div class="row">
+        <div class="col-md-5 col-md-offset-3">
+            <div class="panel-group panel panel-default">
+                <section >
 
-<h2>Complete Your Profile</h2>
-<fieldset>
-    <form method="POST" action="Create">
-        <div>
-            <lebel for="FirstName"><strong>First Name</strong></lebel>
-            <br/>
-            <input type="text" name="Firstname"/>
+                    <div class="panel">
+                        <h2 class="panel-heading" align="center">Complete Your Profile</h2>
+                    </div>
+                    <div class="panel-body panel-group">
+                        <form method="POST" action="Create">
+
+                            <div class="form-group col-sm-12">
+                                <label for="FirstName"><strong>First Name</strong></label>
+                                <br/>
+                                <input class=" col-sm-12" type="text" name="Firstname" placeholder="First name" required="required"/>
+                                <span class="field-validation-valid" data-valmsg-for="Firstname" data-valmsg-replace="true"></span>
+                            </div>
+
+                            <div class="form-group  col-sm-12">
+                                <label for="LastName"><strong>Last Name</strong></label>
+                                <br/>
+                                <input class=" col-sm-12" type="text" name="Lastname" placeholder="Last name" required="required"/>
+                                <span class="field-validation-valid" data-valmsg-for="Lastname" data-valmsg-replace="true"></span>
+                            </div>
+
+                            <div>
+                                <div class="form-group  col-sm-12" id="Gender">
+                                    <label for="Gender"><strong>Gender</strong> </label>
+                                    <br/>
+                                    <div >
+                                        <select class="form-control " id="gender1" name="Gender">
+
+                                            <option>Male</option>
+
+                                            <option>Female</option>
+
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group  col-sm-12">
+                                <label for="Age"><strong>Age</strong></label>
+                                <br/>
+                                <input class=" col-sm-12" id="Age" type="number" name="Age" required="required"/>
+                                <span class="field-validation-valid" data-valmsg-for="Age" data-valmsg-replace="true"></span>
+                            </div>
+
+
+                            <div class="form-group  col-sm-12">
+                                <label for="Weight"><strong>Weight</strong></label>
+                                <br/>
+                                <input class=" col-sm-12" type="number" name="Weight" required="required"/>
+                                <span class="field-validation-valid" data-valmsg-for="Weight" data-valmsg-replace="true"></span>
+                            </div>
+
+
+                            <div class="form-group  col-sm-12">
+                                <label for="email"><strong>Email</strong></label>
+                                <br/>
+                                <input class=" col-sm-12" type="email" id="email" placeholder="Enter email" name="Email" required="required">
+                                <span class="field-validation-valid" data-valmsg-for="Email" data-valmsg-replace="true"></span>
+                            </div>
+
+
+                            <div class="form-group  col-sm-12">
+                                <label for="Birthdate"><strong>Birthdate</strong></label>
+                                <br/>
+                                <input class=" col-sm-12" type="date" name="Birthdate" placeholder="Date of Birth" required="required">
+                                <span class="field-validation-valid" data-valmsg-for="Birthdate" data-valmsg-replace="true"></span>
+                            </div>
+
+                            <div class="form-group col-sm-12">
+                                <input class="col-sm-12" type="submit" value="Submit"/>
+                            </div>
+                        </form>
+
+                    </div>
+                </section>
+            </div>
         </div>
+    </div>
+</div>
 
-        <div>
-            <lebel for="LastName"><strong>Last Name</strong></lebel>
-            <br/>
-            <input type="text" name="Lastname"/>
-        </div>
-
-        <div>
-            <lebel for="Gender"><strong>Gender</strong></lebel>
-            <br/>
-            <input type="text" name="Gender"/>
-        </div>
+    
+    @section Scripts {
+            @Scripts.Render("~/bundles/jqueryval")
+        }
 
 
 
-        <div>
-            <lebel for="Age"><strong>Age</strong></lebel>
-            <br/>
-            <input type="text" name="Age"/>
-        </div>
 
-
-        <div>
-            <lebel for="Weight"><strong>Weight</strong></lebel>
-            <br/>
-            <input type="text" name="Weight"/>
-        </div>
-
-
-        <div >
-            <label for="email"><strong>Email</strong></label>
-            <br />
-            <input type="email" id="email" placeholder="Enter email" name="Email">
-        </div>
-
-        <div >
-            <lebel for="Birthdate"><strong>Birthdate</strong></lebel>
-            <br />
-            <input type="date" name="Birthdate" placeholder="Date of Birth">
-        </div>
-
-        <p>
-            <input type="submit" value="Submit"/>
-        </p>
-    </form>
-</fieldset>
-
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
