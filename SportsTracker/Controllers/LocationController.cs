@@ -5,22 +5,11 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Xml;
+using SportsTracker.Models;
+using SportsTracker.Models.ViewModel;
 
 namespace SportsTracker.Controllers
 {
-    public class GpsData
-    {
-        public string Latitude { get; set; }
-        public string Longitude { get; set; }
-        public string Elevation { get; set; }
-        public DateTime Time { get; set; }
-    }
-
-    public class LocationViewModel
-    {
-        public List<GpsData> GpsDatas { get; set; }
-        public double Distance { get; set; }
-    }
 
     public class LocationController : Controller
     {
@@ -31,23 +20,28 @@ namespace SportsTracker.Controllers
         {
             var gpsDataList = new List<GpsData>();
             var xmldoc = new XmlDocument();
-            xmldoc.Load(HttpContext.Server.MapPath("~/Content/test.gpx"));
+            xmldoc.Load(HttpContext.Server.MapPath("~/Content/gps File/120.gpx"));
             XmlNodeList trackPointNodes = xmldoc.GetElementsByTagName("trkpt");
             foreach (XmlNode node in trackPointNodes)
             {
-                var lat = node.Attributes["lat"].Value;
-                var lng = node.Attributes["lon"].Value;
-                var ele = node.ChildNodes[0].InnerText;
-                var time = node.ChildNodes[1].InnerText;
-                var a = DateTime.Now;
-
-                gpsDataList.Add(new GpsData
+                if (node.Attributes != null)
                 {
-                    Latitude = lat,
-                    Longitude = lng,
-                    Elevation = ele,
-                    Time = DateTime.Parse(time, null, DateTimeStyles.RoundtripKind)
-                });
+                    string lat = node.Attributes["lat"].Value;
+                    var lng = node.Attributes["lon"].Value;
+                    var ele = node.ChildNodes[0].InnerText;
+                    var time = node.ChildNodes[1].InnerText;
+                    var a = DateTime.Now;
+
+                    gpsDataList.Add(new GpsData
+                    {
+                        Latitude = lat,
+                        Longitude = lng,
+                        Elevation = ele,
+                        Time = DateTime.Parse(time, null, DateTimeStyles.RoundtripKind)
+                        //Call the DateTime.Parse(String, IFormatProvider, DateTimeStyles) method,
+                        //and pass DateTimeStyles.RoundtripKind as the value of the styles parameter.
+                    });
+                }
             }
 
             double distance = 0;
@@ -63,13 +57,14 @@ namespace SportsTracker.Controllers
             var finalDistance = Math.Round(distance, 2);
 
             var timeStamp = Math.Round((gpsDataList.Last().Time - gpsDataList.First().Time).TotalHours, 2);
-            var speed = Math.Round(distance/timeStamp, 2);
+            var avgSpeed = Math.Round(distance/timeStamp, 2);
 
             var locationViewModel = new LocationViewModel();
             locationViewModel.GpsDatas = gpsDataList;
             locationViewModel.Distance = finalDistance;
-
-            @ViewBag.Sadid = locationViewModel;
+            locationViewModel.Speed = avgSpeed;
+            
+            //@ViewBag.Fabiha = locationViewModel;
             return View(locationViewModel);
         }
 
@@ -94,6 +89,9 @@ namespace SportsTracker.Controllers
 
             // Intermediate result c (great circle distance in Radians).
             double c = 2.0 * Math.Asin(Math.Sqrt(a));
+
+            //c = 2 * atan2(sqrt(a), sqrt(1-a)) 
+            //double c = 2.0 * Math.Atan2(Math.Pow(a, 2), Math.Pow((1 - a), 2));
 
             // Distance.
             // const Double kEarthRadiusMiles = 3956.0;
