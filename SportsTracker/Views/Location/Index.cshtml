@@ -1,10 +1,11 @@
-﻿@model SportsTracker.Controllers.LocationViewModel
+﻿@model SportsTracker.Models.ViewModel.LocationViewModel
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Rotes</h2>
 <div class="row">Distance: @Model.Distance Km</div>
+<div class="row">Averege Speed: @Model.Speed Kmph</div>
 
 <div id="map" style="height: 500px; width: 1048px"></div>
 <script>
@@ -17,7 +18,7 @@
             @foreach (var gc in Model.GpsDatas)
             {
                 @:coordinates.push(new google.maps.LatLng("@gc.Latitude", "@gc.Longitude"));
-                        }
+            }
             return coordinates;
 
         }
