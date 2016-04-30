@@ -1,0 +1,22 @@
+﻿@{
+    ViewBag.Title = "UploadFile";
+}
+
+<h2>Upload Activity File</h2>
+@using (Html.BeginForm("CurrentActivity", "Location", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{ 
+    foreach (var activity in Model)
+    {
+        <div>
+            <input type="radio" name="activityTypeId" value="@activity.Id" />@activity.Title
+        </div>
+    }
+    <br/>
+    
+    @*<input type="file" name="file" />*@
+    <label class="control-label">Select File</label>
+    <input id="input-1" type="file" class="file">
+    
+    <br/>
+    <input type="submit" name="Submit" id="Submit" value="Submit" />
+}

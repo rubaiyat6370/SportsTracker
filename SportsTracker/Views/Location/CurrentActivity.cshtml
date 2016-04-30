@@ -1,0 +1,181 @@
+﻿@model SportsTracker.Models.ViewModel.LocationViewModel
+@{
+    ViewBag.Title = "CurrentActivity";
+}
+
+<div style="margin: 10px; padding: 10px;">
+    <div class="row">
+        <h2>Routes</h2>
+        Status:
+    </div>
+
+    <div class="row">
+        <div class="col-lg-3 col-md-6">
+            <div class="panel panel-yellow">
+                <a href="#">
+                    <div class="panel-footer">
+                        <span class="pull-left">Distance</span>
+                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            @*<i class="fa fa-shopping-cart fa-5x"></i>*@
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            <div class="huge">@Model.Distance </div>
+                            <span>Km</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6">
+            <div class="panel panel-yellow">
+                <a href="#">
+                    <div class="panel-footer">
+                        <span class="pull-left">Averege Speed</span>
+                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            @*                            <i class="fa fa-shopping-cart fa-5x"></i>*@
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            <div class="huge">@Model.Speed</div>
+                            <span>Kmph</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6">
+            <div class="panel panel-yellow">
+                <a href="#">
+                    <div class="panel-footer">
+                        <span class="pull-left">Burned Calorie</span>
+                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            @*<i class="fa fa-shopping-cart fa-5x"></i>*@
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            <div class="huge">@Model.BurnedCalorie</div>
+                            <span>kcal</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6">
+            <div class="panel panel-yellow">
+                <a href="/Location/Statistics/@ViewBag.ActivityId">
+                    <div class="panel-footer">
+                        <span class="pull-left">Statistics</span>
+                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+                <div class="panel-heading" style="height: 98px">
+                    <div class="row" style="text-align: center; font-size: 20px">
+                        Graph Representation
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <br />
+    <div class="row" style="width: 800px">
+        <div id="map" style="height: 400px; width: 1029px; margin-left: 15px;"></div>
+    </div>
+</div>
+
+<script>
+
+    // This example creates a 2-pixel-wide red polyline showing the path of William
+    // Kingsford Smith's first trans-Pacific flight between Oakland, CA, and
+    // Brisbane, Australia.
+    function getData() {
+        var coordinates = [];
+            @foreach (var gc in Model.GpsDatas)
+            {
+                @:coordinates.push(new google.maps.LatLng("@gc.Latitude", "@gc.Longitude"));
+            }
+        return coordinates;
+
+    }
+    function initMap() {
+
+        var coordinates = getData();
+
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 11,
+            center: coordinates[Math.floor(coordinates.length / 2)],
+            //center: coordinates[0],
+            mapTypeId: google.maps.MapTypeId.TERRAIN
+        });
+       
+        // Define the symbol, using one of the predefined paths ('CIRCLE')
+        // supplied by the Google Maps JavaScript API.
+        var lineSymbol = {
+            path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW,
+            scale: 5,
+            strokeColor: '#393'
+        };
+
+        var traveledPath = new google.maps.Polyline({
+            path: coordinates,
+            icons: [{
+                icon: lineSymbol,
+                offset: '100%'
+            }],
+            map: map,
+            geodesic: true,
+            strokeColor: '#FF0000',
+            strokeOpacity: 1.0,
+            strokeWeight: 2
+        });
+
+        animateCircle(traveledPath);
+        traveledPath.setMap(map);
+
+    }
+    // Use the DOM setInterval() function to change the offset of the symbol
+    // at fixed intervals.
+    function animateCircle(line) {
+        var count = 0;
+        window.setInterval(function () {
+            count = (count + 1) % 200;
+
+            var icons = line.get('icons');
+            icons[0].offset = (count / 2) + '%';
+            line.set('icons', icons);
+        }, 20);
+    }
+  
+
+</script>
+
+<script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA6VqsQICGc_himwMOFk9TWRbQFSZkwvGg&callback=initMap">
+</script>
+
+

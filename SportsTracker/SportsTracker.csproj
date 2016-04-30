@@ -174,13 +174,17 @@
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\Calorie.cs" />
+    <Compile Include="Models\DbModel\Activity.cs" />
     <Compile Include="Models\DbModel\Group.cs" />
     <Compile Include="Models\DbModel\Location.cs" />
     <Compile Include="Models\DbModel\Post.cs" />
     <Compile Include="Models\DbModel\SportsTrackerContext.cs" />
+    <Compile Include="Models\DbModel\ActivityType.cs" />
     <Compile Include="Models\DbModel\User.cs" />
     <Compile Include="Models\DbModel\UserGroupRelation.cs" />
     <Compile Include="Models\GpsData.cs" />
+    <Compile Include="Models\Repository\ActivityRepository.cs" />
+    <Compile Include="Models\Repository\ActivityTypeRepository.cs" />
     <Compile Include="Models\Repository\GroupRepository.cs" />
     <Compile Include="Models\Repository\PostRepository.cs" />
     <Compile Include="Models\Repository\UserRepository.cs" />
@@ -1015,6 +1019,7 @@
     <Content Include="assests\less\mixins.less" />
     <Content Include="assests\less\sb-admin-2.less" />
     <Content Include="assests\less\variables.less" />
+    <Content Include="Scripts\Chart.js" />
     <Content Include="Views\Shared\mapRoute.html" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -1043,6 +1048,11 @@
     <Content Include="Content\gps File\83.gpx" />
     <Content Include="Content\gps File\88.gpx" />
     <Content Include="Content\gps File\92.gpx" />
+    <Content Include="Views\Location\CreateActivity.cshtml" />
+    <Content Include="Views\Shared\CustomError.cshtml" />
+    <Content Include="Views\Location\MyActivities.cshtml" />
+    <Content Include="Views\Location\Statistics.cshtml" />
+    <Content Include="Views\Location\CurrentActivity.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

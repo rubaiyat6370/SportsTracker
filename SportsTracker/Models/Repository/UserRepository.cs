@@ -50,5 +50,10 @@ namespace SportsTracker.Models.Repository
         {
             return db.Users.SingleOrDefault(u => u.Id == userId);
         }
+
+        public User GetUserByProfileId(int userProfileId)
+        {
+            return db.Users.SingleOrDefault(u => u.UserProfileId == userProfileId);
+        }
     }
-}
+}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
