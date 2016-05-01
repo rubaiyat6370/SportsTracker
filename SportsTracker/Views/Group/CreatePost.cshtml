@@ -1,0 +1,81 @@
+﻿@model SportsTracker.Models.DbModel.Post
+
+@{
+    ViewBag.Title = "CreatePost";
+}
+
+<style>
+    .textarea {
+        width: 400px;
+        height: 300px;
+    }
+
+    #commentsAdd {
+        background: #ECEFF9;
+        width: inherit;
+        height: 500px;
+        padding-top: 0;
+        margin-top: 0;
+        
+    }
+
+    #post {
+        height: 300px;
+        width: 600px;
+    }
+    #title {
+         width: 600px;
+    }
+    #header {
+        padding-top: 10px;
+    }
+</style>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+
+
+    <div id ="commentsAdd" align="center">
+        <div id ="respond" class="box m-t-6">
+            <div id="respond" class="comment-respond">
+                <h3 style="color: #0B173B" id="header">
+                    Share Your Thinkings
+                </h3>
+                <fieldset>
+                    <form method="POST" action="/CreatePost/">
+                        <input type="hidden" name="GroupId" value="@ViewBag.groupId" />
+                        <div class="comment-form">
+                            
+                            <br/>
+                            <input placeholder="Title" id="title" type="text" cols="45" rows="8" name="Title" required="required" />
+                            <span class="field-validation-valid" data-valmsg-for="Title" data-valmsg-replace="true"></span>
+                        </div>
+                        <div class="comment-form-comment">
+                            
+                            <br/>
+                            <textarea id="post" cols="45" rows="8" aria-describedby="form-allowed-tags" placeholder="Write your thoughts...." name="PostDescription" required="required"></textarea>
+                            <span class="field-validation-valid" data-valmsg-for="PostDescription" data-valmsg-replace="true"></span>
+                        </div>
+
+
+                        <p>
+                            <input type="submit" id="submit" class="btn-info" value="Submit"/>
+                        </p>
+                    </form>
+                </fieldset>
+            </div>
+        </div>
+    </div>
+   
+        
+}
+<div>
+    @Html.ActionLink("Back to List", "Details", new { id = ViewBag.groupId })
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
