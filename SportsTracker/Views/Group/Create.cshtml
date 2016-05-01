@@ -1,0 +1,36 @@
+﻿@model SportsTracker.Models.Repository.GroupRepository
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <form method="POST" action="Create">
+            <div class="editor-field">
+                <label for="Groupname"><strong>Group Name</strong></label>
+                <br />
+                <input type="text" name="Groupname" required="required" />
+                <span class="field-validation-valid" data-valmsg-for="Groupname" data-valmsg-replace="true"></span>
+            </div>
+            <p>
+                <input type="submit" value="Create" />
+            </p>
+        </form>
+
+        
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index","Home")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
