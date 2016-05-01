@@ -23,6 +23,7 @@ namespace SportsTracker.Controllers
         UserRepository userRepository = new UserRepository();
         ActivityRepository _activityRepository = new ActivityRepository();
         ActivityTypeRepository _activityTypeRepository = new ActivityTypeRepository();
+        METConditionRepository _metConditionRepository = new METConditionRepository();
         //
         // GET: /Location/
 
@@ -152,6 +153,7 @@ namespace SportsTracker.Controllers
             locationViewModel.BurnedCalorie = activity.Calorie;
 
             ViewBag.ActivityId = id;
+            ViewBag.ActivityType = activity.ActivityType.Title;
             return View("~/Views/Location/CurrentActivity.cshtml", locationViewModel);
         }
 
@@ -186,10 +188,13 @@ namespace SportsTracker.Controllers
                 locationViewModel.Time = timeStamp;
 
                 
-                var user = userRepository.GetUserByProfileId(WebSecurity.CurrentUserId);
-                //var user = userRepository.GetUserByProfileId(intuserID);
-                var weight = user.Weight;
-                var cal = Convert.ToDouble(weight) * .8 * avgSpeed;
+                //var user = userRepository.GetUserByProfileId(WebSecurity.CurrentUserId);
+                ////var user = userRepository.GetUserByProfileId(intuserID);
+                //var weight = Convert.ToDouble(user.Weight);
+                //var met = _metConditionRepository.GetMET(avgSpeed, activityTypeId);
+               // var cal = Math.Round(CalculateCalorie( met,weight, timeStamp),2);
+               var cal = Math.Round(CalculateCalorie(activityTypeId, avgSpeed, timeStamp), 2);
+               
 
                 locationViewModel.BurnedCalorie = cal;
 
@@ -208,7 +213,7 @@ namespace SportsTracker.Controllers
                 };
                 var isSuccess = _activityRepository.Add(activity);
                 ViewBag.ActivityId = activity.Id;
-                ViewBag.Status = activity.ActivityType.Title;
+                ViewBag.ActivityType = _activityTypeRepository.Get(activityTypeId).Title;
                 return View(locationViewModel);
             }
 
@@ -352,6 +357,23 @@ namespace SportsTracker.Controllers
             return Json(speedListVersusTime, JsonRequestBehavior.AllowGet);
         }
 
+
+        //public double CalculateCalorie(double met, double weight, double duration)
+        //{
+        //    var burnedCal = met*weight*duration;
+        //    return burnedCal;
+        //}
+        public double CalculateCalorie(int activityTypeId, double speed, double duration)
+        {
+            var user = userRepository.GetUserByProfileId(WebSecurity.CurrentUserId);
+                //var user = userRepository.GetUserByProfileId(intuserID);
+                var weight = Convert.ToDouble(user.Weight);
+                var met = _metConditionRepository.GetMET(speed, activityTypeId);
+                var burnedCal = met*weight*duration;
+                return burnedCal;
+        }
     }
+
+   
 
 }

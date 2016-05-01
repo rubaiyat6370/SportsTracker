@@ -1,15 +1,61 @@
 ﻿@model SportsTracker.Models.ViewModel.LocationViewModel
 @{
     ViewBag.Title = "CurrentActivity";
+    var a = ViewBag.ActivityType;
+    var b = 2;
 }
+<style>
+    .panel-yellow {
+        border-color: #1AB394;
+    }
 
+        .panel-yellow .panel-heading {
+            background-color: #1AB394;
+            border-color: #1AB394;
+        }
+
+    .panel-footer span {
+        font-weight: 800;
+        color: #285F53;
+    }
+</style>
 <div style="margin: 10px; padding: 10px;">
     <div class="row">
-        <h2>Routes</h2>
-        Status:
+        <div class="col-md-10">
+            <h2>Activity Details</h2>
+        </div>
+        <div class="col-md-2" style="text-align: right; padding-top: 15px; padding-right: 18px;">
+            <a href="/Location/Statistics/@ViewBag.ActivityId" class="btn btn-success" style="padding: 9px">Show Statistics
+            </a>
+        </div>
+
     </div>
 
     <div class="row">
+        <div class="col-lg-3 col-md-6">
+            <div class="panel panel-yellow">
+                <a href="#">
+                    <div class="panel-footer">
+                        <span class="pull-left">Status</span>
+                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+                <div class="panel-heading" style="height: 98px">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            @*<i class="fa fa-shopping-cart fa-5x"></i>*@
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            <div class="huge">@ViewBag.ActivityType </div>
+                            <span></span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
         <div class="col-lg-3 col-md-6">
             <div class="panel panel-yellow">
                 <a href="#">
@@ -82,7 +128,7 @@
             </div>
         </div>
 
-        <div class="col-lg-3 col-md-6">
+        @*<div class="col-lg-3 col-md-6">
             <div class="panel panel-yellow">
                 <a href="/Location/Statistics/@ViewBag.ActivityId">
                     <div class="panel-footer">
@@ -98,11 +144,10 @@
                 </div>
 
             </div>
-        </div>
+        </div>*@
 
     </div>
 
-    <br />
     <div class="row" style="width: 800px">
         <div id="map" style="height: 400px; width: 1029px; margin-left: 15px;"></div>
     </div>
@@ -132,7 +177,7 @@
             //center: coordinates[0],
             mapTypeId: google.maps.MapTypeId.TERRAIN
         });
-       
+
         // Define the symbol, using one of the predefined paths ('CIRCLE')
         // supplied by the Google Maps JavaScript API.
         var lineSymbol = {
@@ -170,7 +215,7 @@
             line.set('icons', icons);
         }, 20);
     }
-  
+
 
 </script>
 
