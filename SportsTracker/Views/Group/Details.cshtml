@@ -1,0 +1,66 @@
+﻿@model SportsTracker.Models.ViewModel.GroupViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Group Details</h2>
+
+<fieldset>
+    
+
+    <div class="display-label">
+        <label for="Groupname"><strong>Group Name</strong></label>
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Groupname)
+    </div>
+
+    <div class="display-label">
+        <label for="GroupMembers"><strong>Group members</strong></label>
+    </div>
+    <div>
+        @if (Model.Users.Count == 0)
+        {
+            <div>
+                No User added
+            </div>
+        }
+        @foreach (var u in Model.Users)
+        {
+            <div>
+                @u.Firstname @u.Lastname
+            </div>
+        }
+    </div>
+    <div class="display-label">
+        <label for="GroupPosts"><strong>Group Posts</strong></label>
+    </div>
+    <div>
+        @if (Model.PostsList.Count==0)
+        {
+            <div>
+                No Post added
+            </div>
+        }
+        @foreach (var p in Model.PostsList)
+        {
+            <h4>Title</h4>
+            <div>
+                @p.Title
+            </div>
+            <h4>Description</h4>
+            <div>
+                @p.PostDescription
+            </div>
+            <div>
+                @p.CreatedOn
+            </div>
+        }
+    </div>
+</fieldset>
+<p>
+    
+    @Html.ActionLink("Add member", "AddMember", new {  groupId=Model.GroupId  })
+    @Html.ActionLink("Create Post", "CreatePost", new { id = Model.GroupId })
+</p>
