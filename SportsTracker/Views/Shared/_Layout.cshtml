@@ -165,15 +165,16 @@
                     <ul class="nav" id="side-menu">
 
                         <li>
-                            <a href="/Home"><i class="fa fa-dashboard fa-fw"></i>Dashboard</a>
+                            <a href="/Home/Index"><i class="fa fa-dashboard fa-fw"></i>Home</a>
                         </li>
                         @if (WebSecurity.IsAuthenticated)
                         {
+                            
                             <li>
-                                <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>Post<span class="fa arrow"></span></a>
+                                <a href="#"><i class="fa fa-tasks fa-fw"></i>Post<span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level">
                                     <li>
-                                        <a href="/Post">News Feed</a>
+                                        <a href="/Post/Index">News Feed</a>
                                     </li>
                                     <li>
                                         <a href="/Post/MyPosts">My Posts</a>
@@ -184,7 +185,7 @@
                                 </ul>
                                 <!-- /.nav-second-level -->
                             </li>
-                            <li >
+                            <li>
                                 <a href="#"><i class="fa fa-group"></i>Group<span class="fa arrow "></span></a>
                                 <ul class="nav nav-second-level">
                                     <li>
@@ -201,7 +202,7 @@
                             </li>
 
                             <li>
-                                <a href="#"><i class="fa fa-tasks fa-fw"></i>Activities<span class="fa arrow"></span></a>
+                                <a href="#"><i class="fa fa-map-marker fa-fw"></i>Activities<span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level">
                                     <li>
                                         <a href="/Location/CreateActivity">Add Activity</a>
@@ -214,53 +215,20 @@
                                 <!-- /.nav-second-level -->
                             </li>
                             <li>
-                                <a href="/Location/Direction"><i class="fa fa-map-marker fa-fw"></i>Routes</a>
+                                <a href="/Location/OverallStatistics"><i class="fa fa-bar-chart-o fa-fw"></i>Statistics Profile</a>
                             </li>
-
-                            <li>
-                                <a href="#"><i class="fa fa-sitemap fa-fw"></i>Multi-Level Dropdown<span class="fa arrow"></span></a>
-                                <ul class="nav nav-second-level">
-                                    <li>
-                                        <a href="#">Second Level Item</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Second Level Item</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Third Level <span class="fa arrow"></span></a>
-                                        <ul class="nav nav-third-level">
-                                            <li>
-                                                <a href="#">Third Level Item</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Third Level Item</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Third Level Item</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Third Level Item</a>
-                                            </li>
-                                        </ul>
-                                        <!-- /.nav-third-level -->
-                                    </li>
-                                </ul>
-                                <!-- /.nav-second-level -->
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-files-o fa-fw"></i>Sample Pages<span class="fa arrow"></span></a>
-                                <ul class="nav nav-second-level">
-                                    <li>
-                                        <a href="blank.html">Blank Page</a>
-                                    </li>
-                                    <li>
-                                        <a href="login.html">Login Page</a>
-                                    </li>
-                                </ul>
-                                <!-- /.nav-second-level -->
-                            </li>
-
+                            
+                            
+                            
+                          
                         }
+                        <li>
+                            <a href="/Home/About"><i class="fa fa-at fa-fw"></i>About Us</a>
+                        </li>
+                        <li>
+                            <a href="/Home/Contact"><i class="fa fa-microphone fa-fw"></i>Contact Information</a>
+                        </li>
+
 
                     </ul>
                 </div>
@@ -280,6 +248,9 @@
             <!-- /.row -->
         </div>
         <!-- /#page-wrapper -->
+
+            <i style="font-family: monospace; color: #6B3838; margin-left: 270px;">Copyright &copy; SportsTracker, 2016</i>
+        
 
     </div>
     <!-- /#wrapper -->

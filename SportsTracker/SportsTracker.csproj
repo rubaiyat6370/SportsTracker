@@ -192,6 +192,7 @@
     <Compile Include="Models\Repository\PostRepository.cs" />
     <Compile Include="Models\Repository\UserGroupRelationRepository.cs" />
     <Compile Include="Models\Repository\UserRepository.cs" />
+    <Compile Include="Models\ViewModel\ActivityViewModel.cs" />
     <Compile Include="Models\ViewModel\LocationViewModel.cs" />
     <Compile Include="Models\ViewModel\GroupViewModel.cs" />
     <Compile Include="Models\ViewModel\PostViewModel.cs" />
@@ -1024,6 +1025,8 @@
     <Content Include="assests\less\mixins.less" />
     <Content Include="assests\less\sb-admin-2.less" />
     <Content Include="assests\less\variables.less" />
+    <Content Include="Images\2.jpg" />
+    <Content Include="Images\cycling myth image.jpg" />
     <Content Include="Scripts\Chart.js" />
     <Content Include="Views\Shared\mapRoute.html" />
     <Content Include="Web.config">
@@ -1033,7 +1036,6 @@
     <Content Include="Views\User\Edit.cshtml" />
     <Content Include="Views\User\Delete.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
-   
     <Content Include="Views\Location\Direction.cshtml" />
     <Content Include="Views\Location\Index.cshtml" />
     <Content Include="Views\Location\Details.cshtml" />
@@ -1053,7 +1055,7 @@
     <Content Include="Content\gps File\81.gpx" />
     <Content Include="Content\gps File\83.gpx" />
     <Content Include="Content\gps File\88.gpx" />
-    <Content Include="Content\gps File\92.gpx" />    
+    <Content Include="Content\gps File\92.gpx" />
     <Content Include="Views\Location\CreateActivity.cshtml" />
     <Content Include="Views\Shared\CustomError.cshtml" />
     <Content Include="Views\Location\MyActivities.cshtml" />
@@ -1069,7 +1071,7 @@
     <Content Include="Views\User\SearchUser.cshtml" />
     <Content Include="Views\Group\AddMember.cshtml" />
     <Content Include="Views\Group\CreatePost.cshtml" />
-
+    <Content Include="Views\Location\OverallStatistics.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
