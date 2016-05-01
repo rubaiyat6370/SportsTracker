@@ -20,10 +20,10 @@ namespace SportsTracker.Controllers
     [InitializeSimpleMembership]
     public class LocationController : Controller
     {
-        UserRepository userRepository = new UserRepository();
-        ActivityRepository _activityRepository = new ActivityRepository();
-        ActivityTypeRepository _activityTypeRepository = new ActivityTypeRepository();
-        METConditionRepository _metConditionRepository = new METConditionRepository();
+        private UserRepository userRepository = new UserRepository();
+        private ActivityRepository _activityRepository = new ActivityRepository();
+        private ActivityTypeRepository _activityTypeRepository = new ActivityTypeRepository();
+        private METConditionRepository _metConditionRepository = new METConditionRepository();
         //
         // GET: /Location/
 
@@ -68,7 +68,7 @@ namespace SportsTracker.Controllers
             var finalDistance = Math.Round(distance, 2);
 
             var timeStamp = Math.Round((gpsDataList.Last().Time - gpsDataList.First().Time).TotalHours, 2);
-            var avgSpeed = Math.Round(distance / timeStamp, 2);
+            var avgSpeed = Math.Round(distance/timeStamp, 2);
 
             var locationViewModel = new LocationViewModel();
             locationViewModel.GpsDatas = gpsDataList;
@@ -88,7 +88,7 @@ namespace SportsTracker.Controllers
             var user = userRepository.GetUserByProfileId(WebSecurity.CurrentUserId);
             //var user = userRepository.GetUserByProfileId(intuserID);
             var weight = user.Weight;
-            var cal = Convert.ToDouble(weight) * .8 * avgSpeed;
+            var cal = Convert.ToDouble(weight)*.8*avgSpeed;
 
             locationViewModel.BurnedCalorie = cal;
 
@@ -98,25 +98,25 @@ namespace SportsTracker.Controllers
 
 
         public static double Calc(double lat1,
-                      double long1, double lat2, double long2)
+            double long1, double lat2, double long2)
         {
 
             double dDistance = Double.MinValue;
-            double dLat1InRad = lat1 * (Math.PI / 180.0);
-            double dLong1InRad = long1 * (Math.PI / 180.0);
-            double dLat2InRad = lat2 * (Math.PI / 180.0);
-            double dLong2InRad = long2 * (Math.PI / 180.0);
+            double dLat1InRad = lat1*(Math.PI/180.0);
+            double dLong1InRad = long1*(Math.PI/180.0);
+            double dLat2InRad = lat2*(Math.PI/180.0);
+            double dLong2InRad = long2*(Math.PI/180.0);
 
             double dLongitude = dLong2InRad - dLong1InRad;
             double dLatitude = dLat2InRad - dLat1InRad;
 
             // Intermediate result a.
-            double a = Math.Pow(Math.Sin(dLatitude / 2.0), 2.0) +
-                       Math.Cos(dLat1InRad) * Math.Cos(dLat2InRad) *
-                       Math.Pow(Math.Sin(dLongitude / 2.0), 2.0);
+            double a = Math.Pow(Math.Sin(dLatitude/2.0), 2.0) +
+                       Math.Cos(dLat1InRad)*Math.Cos(dLat2InRad)*
+                       Math.Pow(Math.Sin(dLongitude/2.0), 2.0);
 
             // Intermediate result c (great circle distance in Radians).
-            double c = 2.0 * Math.Asin(Math.Sqrt(a));
+            double c = 2.0*Math.Asin(Math.Sqrt(a));
 
             //c = 2 * atan2(sqrt(a), sqrt(1-a)) 
             //double c = 2.0 * Math.Atan2(Math.Pow(a, 2), Math.Pow((1 - a), 2));
@@ -124,7 +124,7 @@ namespace SportsTracker.Controllers
             // Distance.
             // const Double kEarthRadiusMiles = 3956.0;
             const Double kEarthRadiusKms = 6376.5;
-            dDistance = kEarthRadiusKms * c;
+            dDistance = kEarthRadiusKms*c;
 
             return dDistance;
         }
@@ -135,15 +135,16 @@ namespace SportsTracker.Controllers
         {
             return View();
         }
+
         //
         // GET: /Location/Details/5
 
         public ActionResult Details(int id)
         {
             var activity = _activityRepository.Get(id);
-            
+
             var gpsDataList = XmlFileReader(activity.FilePath);
-            
+
 
             var locationViewModel = new LocationViewModel();
             locationViewModel.GpsDatas = gpsDataList;
@@ -173,13 +174,13 @@ namespace SportsTracker.Controllers
                 file.SaveAs(path);
 
                 var gpsDataList = XmlFileReader(fileName);
-                
+
 
                 var distance = CalculateDistance(gpsDataList);
                 var finalDistance = Math.Round(distance, 2);
 
                 var timeStamp = Math.Round((gpsDataList.Last().Time - gpsDataList.First().Time).TotalHours, 2);
-                var avgSpeed = Math.Round(distance / timeStamp, 2);
+                var avgSpeed = Math.Round(distance/timeStamp, 2);
 
                 var locationViewModel = new LocationViewModel();
                 locationViewModel.GpsDatas = gpsDataList;
@@ -187,14 +188,14 @@ namespace SportsTracker.Controllers
                 locationViewModel.Speed = avgSpeed;
                 locationViewModel.Time = timeStamp;
 
-                
+
                 //var user = userRepository.GetUserByProfileId(WebSecurity.CurrentUserId);
                 ////var user = userRepository.GetUserByProfileId(intuserID);
                 //var weight = Convert.ToDouble(user.Weight);
                 //var met = _metConditionRepository.GetMET(avgSpeed, activityTypeId);
-               // var cal = Math.Round(CalculateCalorie( met,weight, timeStamp),2);
-               var cal = Math.Round(CalculateCalorie(activityTypeId, avgSpeed, timeStamp), 2);
-               
+                // var cal = Math.Round(CalculateCalorie( met,weight, timeStamp),2);
+                var cal = Math.Round(CalculateCalorie(activityTypeId, avgSpeed, timeStamp), 2);
+
 
                 locationViewModel.BurnedCalorie = cal;
 
@@ -281,7 +282,7 @@ namespace SportsTracker.Controllers
             //var distanceListVersusTime = new List<double>();
             //var duration = 0;
             //int startIndex = 0;
-            
+
             //for (int i = startIndex; i < copyGpsDataList.Count; i++)
             //{
             //    var initialTime = copyGpsDataList[startIndex].Time;
@@ -300,7 +301,7 @@ namespace SportsTracker.Controllers
 
         public ActionResult GetDistanceVersusTimeGraphData(int id)
         {
-            
+
             var activity = _activityRepository.Get(id);
             var gpsDataList = XmlFileReader(activity.FilePath);
             var copyGpsDataList = gpsDataList;
@@ -366,11 +367,69 @@ namespace SportsTracker.Controllers
         public double CalculateCalorie(int activityTypeId, double speed, double duration)
         {
             var user = userRepository.GetUserByProfileId(WebSecurity.CurrentUserId);
-                //var user = userRepository.GetUserByProfileId(intuserID);
-                var weight = Convert.ToDouble(user.Weight);
-                var met = _metConditionRepository.GetMET(speed, activityTypeId);
-                var burnedCal = met*weight*duration;
-                return burnedCal;
+            //var user = userRepository.GetUserByProfileId(intuserID);
+            var weight = Convert.ToDouble(user.Weight);
+            var met = _metConditionRepository.GetMET(speed, activityTypeId);
+            var burnedCal = met*weight*duration;
+            return burnedCal;
+        }
+
+        public ActionResult GetElevetionVersusdistanceGraphData(int id)
+        {
+
+            var activity = _activityRepository.Get(id);
+            var gpsDataList = XmlFileReader(activity.FilePath);
+            var copyGpsDataList = gpsDataList;
+            var listOfEle = ConverStringEleToDouble(gpsDataList);
+            var elevationListVersusDistance = new List<double>();
+            // var duration = 0;
+            int startIndex = 0;
+            double distance = 0;
+            double elevation = 0;
+            for (int i = startIndex; i < copyGpsDataList.Count; i++)
+            {
+                if (i + 1 == copyGpsDataList.Count - 1) break;
+
+                elevation = elevation + listOfEle[i];
+                distance = distance + GetDistanceFromTwoGpsData(copyGpsDataList[i], copyGpsDataList[i + 1]);
+
+                if (distance >= 1)
+                {
+                    elevation = Math.Round(elevation/(i - startIndex), 2);
+                    elevationListVersusDistance.Add(elevation);
+                    startIndex = i + 1;
+                    distance = 0;
+                }
+            }
+            return Json(elevationListVersusDistance, JsonRequestBehavior.AllowGet);
+        }
+
+        public List<double> ConverStringEleToDouble(List<GpsData> gpsDataList)
+        {
+            var listOfEleInDouble = new List<double>();
+            for (int i = 0; i < gpsDataList.Count - 1; i++)
+            {
+                var ele = double.Parse(gpsDataList.ElementAt(i).Elevation);
+                listOfEleInDouble.Add(ele);
+            }
+            return listOfEleInDouble;
+        }
+
+        public ActionResult DeleteActivity(int id)
+        {
+            _activityRepository.DeleteActivity(id);
+            return RedirectToAction("MyActivities");
+        }
+
+        public ActionResult OverallStatistics()
+        {
+            return View();
+        }
+
+        public ActionResult FromDayToDayStatistics(int numberOfDays = 0)
+        {
+            var activities = _activityRepository.GetDataFromDateRange(numberOfDays);
+            return Json(activities, JsonRequestBehavior.AllowGet);
         }
     }
 
