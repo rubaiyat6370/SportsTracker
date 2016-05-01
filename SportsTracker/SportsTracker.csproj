@@ -177,6 +177,7 @@
     <Compile Include="Models\DbModel\Activity.cs" />
     <Compile Include="Models\DbModel\Group.cs" />
     <Compile Include="Models\DbModel\Location.cs" />
+    <Compile Include="Models\DbModel\METCondition.cs" />
     <Compile Include="Models\DbModel\Post.cs" />
     <Compile Include="Models\DbModel\SportsTrackerContext.cs" />
     <Compile Include="Models\DbModel\ActivityType.cs" />
@@ -186,6 +187,7 @@
     <Compile Include="Models\Repository\ActivityRepository.cs" />
     <Compile Include="Models\Repository\ActivityTypeRepository.cs" />
     <Compile Include="Models\Repository\GroupRepository.cs" />
+    <Compile Include="Models\Repository\METConditionRepository.cs" />
     <Compile Include="Models\Repository\PostRepository.cs" />
     <Compile Include="Models\Repository\UserRepository.cs" />
     <Compile Include="Models\ViewModel\LocationViewModel.cs" />
