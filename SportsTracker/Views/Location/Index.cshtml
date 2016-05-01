@@ -3,9 +3,12 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Rotes</h2>
+<div class="row">
+    <h2>Routes</h2>
+</div>
 <div class="row">Distance: @Model.Distance Km</div>
 <div class="row">Averege Speed: @Model.Speed Kmph</div>
+<div class="row">Burned Calorie: @Model.BurnedCalorie kcal</div>
 
 <div id="map" style="height: 500px; width: 1048px"></div>
 <script>

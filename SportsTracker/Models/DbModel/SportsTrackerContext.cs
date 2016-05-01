@@ -20,5 +20,8 @@ namespace SportsTracker.Models.DbModel
         public DbSet<Group> Groups { get; set; }
         public DbSet<UserGroupRelation> UserGroupRelations { get; set; }
         public DbSet<Location> Locations { get; set; }
+        public DbSet<Activity> Activities { get; set; }
+        public DbSet<ActivityType> ActivityTypes { get; set; }
+        public DbSet<METCondition> MetConditions { get; set; }
     }
 }

@@ -10,6 +10,8 @@ namespace SportsTracker.Models.ViewModel
     {
         public List<GpsData> GpsDatas { get; set; }
         public double Distance { get; set; }
+        public double Time { get; set; }
         public double Speed { get; set; }
+        public double BurnedCalorie { get; set; }
     }
 }
