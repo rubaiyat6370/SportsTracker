@@ -18,6 +18,11 @@ namespace SportsTracker.Models.Repository
         public List<ActivityType> GetActivityTypes()
         {
             return _db.ActivityTypes.ToList();
-        } 
+        }
+
+        public ActivityType Get(int id)
+        {
+            return _db.ActivityTypes.Find(id);
+        }
     }
 }
