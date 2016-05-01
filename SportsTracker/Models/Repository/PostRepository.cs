@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Web;
+using System.Web.UI.WebControls.Expressions;
 using SportsTracker.Models.DbModel;
 using WebMatrix.WebData;
 
@@ -48,12 +49,16 @@ namespace SportsTracker.Models.Repository
 
         public List<Post> GetMyPosts()
         {
-            return _db.Posts.Where(p => p.UserId == WebSecurity.CurrentUserId).ToList();
+            //return _db.Posts.Where(p => p.UserId == WebSecurity.CurrentUserId ).ToList();
+            var posts = from p in _db.Posts.Where(p => p.UserId == WebSecurity.CurrentUserId)
+                orderby p.CreatedOn descending
+                select p;
+            return posts.ToList();
         } 
 
         public IQueryable<Post> GetLatestPosts(int numberOfPost)
         {
-            var posts = from p in _db.Posts 
+            var posts = from p in _db.Posts.Where(p=>p.GroupId==0) 
                         orderby p.CreatedOn descending
                         select p;
 

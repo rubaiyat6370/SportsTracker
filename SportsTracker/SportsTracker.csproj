@@ -163,6 +163,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\GroupController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PostController.cs" />
     <Compile Include="Controllers\TestController.cs" />
@@ -179,8 +180,11 @@
     <Compile Include="Models\DbModel\SportsTrackerContext.cs" />
     <Compile Include="Models\DbModel\User.cs" />
     <Compile Include="Models\DbModel\UserGroupRelation.cs" />
+    <Compile Include="Models\Repository\GroupRepository.cs" />
     <Compile Include="Models\Repository\PostRepository.cs" />
+    <Compile Include="Models\Repository\UserGroupRelationRepository.cs" />
     <Compile Include="Models\Repository\UserRepository.cs" />
+    <Compile Include="Models\ViewModel\GroupViewModel.cs" />
     <Compile Include="Models\ViewModel\PostViewModel.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
@@ -1015,8 +1019,16 @@
     <Content Include="Views\User\Create.cshtml" />
     <Content Include="Views\User\Edit.cshtml" />
     <Content Include="Views\User\Delete.cshtml" />
-    <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\Post\MyPosts.cshtml" />
+    <Content Include="Views\Group\Index.cshtml" />
+    <Content Include="Views\Group\Create.cshtml" />
+    <Content Include="Views\Group\Edit.cshtml" />
+    <Content Include="Views\Group\Delete.cshtml" />
+    <Content Include="Views\Group\MyGroups.cshtml" />
+    <Content Include="Views\Group\Details.cshtml" />
+    <Content Include="Views\User\SearchUser.cshtml" />
+    <Content Include="Views\Group\AddMember.cshtml" />
+    <Content Include="Views\Group\CreatePost.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
