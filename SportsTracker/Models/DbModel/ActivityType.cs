@@ -13,5 +13,7 @@ namespace SportsTracker.Models.DbModel
         public string Title { get; set; }
 
         public virtual ICollection<Activity> Activities { get; set; }
+        public virtual ICollection<METCondition> MetConditions { get; set; }
+
     }
 }
