@@ -30,6 +30,7 @@
         {
             <div>
                 @u.Firstname @u.Lastname
+                @Html.ActionLink("Remove","RemoveMember",new{ groupId=Model.GroupId, userId=u.UserProfileId})
             </div>
         }
     </div>

@@ -60,7 +60,7 @@ namespace SportsTracker.Controllers
             groupViewModel.Groupname = group.Groupname;
             groupViewModel.Admin = group.UserId;
             groupViewModel.Users = _groupRelationRepository.MemberListByGroupId(id);
-            groupViewModel.PostsList = _groupRelationRepository.groupPostList(id);
+            groupViewModel.PostsList = _groupRelationRepository.GroupPostList(id);
             
 
             if (group == null)
@@ -189,6 +189,12 @@ namespace SportsTracker.Controllers
                 UserId = userId
             });
             return RedirectToAction("AddMember", new {groupId = groupId});
+        }
+
+        public ActionResult RemoveMember( int groupId, int userId)
+        {
+            _groupRelationRepository.DeleteMember(groupId, userId);
+            return RedirectToAction("Details", new { id = groupId });
         }
 
     }
