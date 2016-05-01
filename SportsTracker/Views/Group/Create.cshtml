@@ -3,32 +3,49 @@
 @{
     ViewBag.Title = "Create";
 }
-
-<h2>Create</h2>
+<style>
+     #header {
+        padding-top: 10px;
+    }
+     #body {
+        background: #ECEFF9;
+        width: inherit;
+        height: 200px;
+        padding-top: 0;
+        margin-top: 0;
+        
+     }
+    
+</style>
 
 @using (Html.BeginForm()) {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
 
-    <fieldset>
+
+    <div id ="body" align="center">
+        <h3 style="color: #0B173B" id="header">
+            Create New Group
+        </h3>
         <form method="POST" action="Create">
-            <div class="editor-field">
+            <div class=" form-group">
                 <label for="Groupname"><strong>Group Name</strong></label>
-                <br />
-                <input type="text" name="Groupname" required="required" />
+                <br/>
+                <input id="name"type="text" name="Groupname" required="required"/>
                 <span class="field-validation-valid" data-valmsg-for="Groupname" data-valmsg-replace="true"></span>
             </div>
+            <br/>
             <p>
-                <input type="submit" value="Create" />
+                <input type="submit" id="submit" class="btn-info" value="Create" />
             </p>
         </form>
+    </div>
 
-        
-    </fieldset>
+
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index","Home")
+    @Html.ActionLink("Back to List", "MyGroups", "Group")
 </div>
 
 @section Scripts {

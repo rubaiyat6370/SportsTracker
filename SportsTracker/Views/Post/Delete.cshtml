@@ -4,32 +4,13 @@
     ViewBag.Title = "Delete";
 }
 
-<h2>Delete Post</h2>
-
 <h3>Are you sure you want to delete this?</h3>
-<fieldset>
-    <legend>Post</legend>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Title)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Title)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.PostDescription)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.PostDescription)
-    </div>
-
-    
-</fieldset>
 @using (Html.BeginForm()) {
     @Html.AntiForgeryToken()
     <p>
-        <input type="submit" value="Delete" />  
-        @Html.ActionLink("Cancel", "Index")
+        <input type="submit" class="btn-danger" value="Delete"/>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Id })  
+        @Html.ActionLink("Cancel", "MyPosts")
     </p>
 }

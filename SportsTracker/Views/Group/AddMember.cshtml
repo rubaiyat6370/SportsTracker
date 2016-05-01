@@ -2,7 +2,7 @@
     ViewBag.Title = "AdduserToGroup";
 }
 
-<h2>AdduserToGroup</h2>
+<h2>Add Member</h2>
 
 @*@foreach (var user in Model)
 {
@@ -34,7 +34,7 @@
                 for (var i = 0; i < response.length; i++) {
                     tableDataRow = tableDataRow + '<tr>' + '<td>' + response[i].Firstname + '</td><td>' + response[i].Lastname + '</td><td>' + response[i].UserName + '</td><td>' + response[i].Weight + '</td><td>' + response[i].Gender + '</td><td><a href="mailto:' + response[i].Email + '">' + response[i].Email + '</a></td><td>' + response[i].Age + '</td><td><a href="/Group/AddUserToGroup?groupId=@ViewBag.GroupId&userId=' + response[i].UserProfileId + '">Add</a></td></tr>';
                 }
-                var generatedhtml = '<table border="2"><tbody><tr><th>Firstname</th><th>Lastname</th><th>UserName</th><th>Weight</th><th>Gender</th><th>Email</th><th>Age</th><th>Action</th></tr> ' + tableDataRow +
+                var generatedhtml = '</br>'+'<table border="2"><tbody><tr align="center"><th>Firstname</th><th>Lastname</th><th>UserName</th><th>Weight</th><th>Gender</th><th>Email</th><th>Age</th><th>Action</th></tr> ' + tableDataRow +
                     '</tbody></table>';
 
                 $("#searchResult").html(generatedhtml);

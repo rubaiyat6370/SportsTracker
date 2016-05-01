@@ -17,6 +17,7 @@ namespace SportsTracker.Models.DbModel
         public DateTime CreatedOn { get; set; }
 
         [Required]
+        [DataType(DataType.MultilineText)]
         public string PostDescription { get; set; }
         public int UserId { get; set; }
 

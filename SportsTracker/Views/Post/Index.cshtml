@@ -4,77 +4,40 @@
     ViewBag.Title = "Index";
 }
 
-
-
-@*<p>
-        @Html.ActionLink("Create New", "Create")
-    </p>*@
-
-<div class="container">
-    <div class="panel-group">
-        <div class="panel">
-            <h2 class="panel-heading" align="justify">Recent Posts</h2>
-        </div>
-        <div class="panel-body">
-            @foreach (var post in Model)
-            {
-                <div class="row">
-
-                    <div class="col-md-4">
-                        @post.User.Firstname @post.User.Lastname
-                    </div>
-                    <div class="col-md-8">
-                        <div class="row">
-                            @post.Title
-                        </div>
-                        <div class="row">
-                            @post.Description
-                        </div>
-                        <div class="row">
-                            @post.CreatedOn
-                        </div>
-
-                    </div>
-                </div>
-                <br />
-
-            }
-        </div>
-    </div>
+<div id="title">
+    <h1 style="color: #380B61">Recent Posts</h1>
 </div>
 
 
-@*<table>
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.GroupId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PostDescription)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UserId)
-        </th>
-        <th></th>
-    </tr>
+<div>
+    @foreach (var post in Model)
+    {
+        <div class="row " id="post">
+            <div class="col-lg-12">
+                <div class="panel panel-info">
+                    <div class="panel-heading lead">
+                        <a class="postTile" href="/Post/Details/@post.Id">@post.Title</a>
+                    </div>
+                    <div class="panel-body">
+                        <blockquote lang=" ">
+                            <p>@post.Description</p>
+                            <small>
+                                Posted by <cite title="Source Title"> @post.User.Firstname @post.User.Lastname</cite>
+                            </small>
+                        </blockquote>
+                    </div>
+                    <div class="panel-footer">
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.GroupId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PostDescription)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UserId)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
+                        <ul class="list-inline">
+                            <li>
+                                <span class="glyphicon glyphicon-time"></span>Posted on @post.CreatedOn
+                            </li>
+                            
+                        </ul>
 
-</table>*@
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
