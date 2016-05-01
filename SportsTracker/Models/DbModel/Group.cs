@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SportsTracker.Models.DbModel
 {
@@ -6,6 +7,7 @@ namespace SportsTracker.Models.DbModel
     public class Group
     {
         public int Id { get; set; }
+        [Required]
         public string Groupname { get; set; }
         public int UserId { get; set; }
     }

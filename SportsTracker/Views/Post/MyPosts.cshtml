@@ -1,0 +1,39 @@
+﻿@{
+    ViewBag.Title = "MyPosts";
+}
+
+<<h2>My Posts</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+<div class="container">
+    @foreach (var post in Model)
+    {
+        <div class="row">
+
+            <div class="col-md-4 " >
+                @post.User.Firstname @post.User.Lastname
+            </div>
+            <div class="col-md-8">
+                <div class="row">
+                    @post.Title
+                </div>
+                <div class="row">
+                    @post.Description
+                </div>
+                <div class="row">
+                    @post.CreatedOn
+                </div>
+                <div class="row">
+                    @Html.ActionLink("Edit", "Edit", new { id = post.Id }) |
+                    @Html.ActionLink("Details", "Details", new { id = post.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = post.Id })
+                </div>
+            </div>
+        </div>
+        <br />
+
+    }
+</div>

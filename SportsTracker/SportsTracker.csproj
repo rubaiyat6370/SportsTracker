@@ -163,6 +163,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\GroupController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LocationController.cs" />
     <Compile Include="Controllers\PostController.cs" />
@@ -183,8 +184,10 @@
     <Compile Include="Models\GpsData.cs" />
     <Compile Include="Models\Repository\GroupRepository.cs" />
     <Compile Include="Models\Repository\PostRepository.cs" />
+    <Compile Include="Models\Repository\UserGroupRelationRepository.cs" />
     <Compile Include="Models\Repository\UserRepository.cs" />
     <Compile Include="Models\ViewModel\LocationViewModel.cs" />
+    <Compile Include="Models\ViewModel\GroupViewModel.cs" />
     <Compile Include="Models\ViewModel\PostViewModel.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
@@ -1023,6 +1026,7 @@
     <Content Include="Views\User\Edit.cshtml" />
     <Content Include="Views\User\Delete.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
+   
     <Content Include="Views\Location\Direction.cshtml" />
     <Content Include="Views\Location\Index.cshtml" />
     <Content Include="Views\Location\Details.cshtml" />
@@ -1042,7 +1046,18 @@
     <Content Include="Content\gps File\81.gpx" />
     <Content Include="Content\gps File\83.gpx" />
     <Content Include="Content\gps File\88.gpx" />
-    <Content Include="Content\gps File\92.gpx" />
+    <Content Include="Content\gps File\92.gpx" />    
+    <Content Include="Views\Post\MyPosts.cshtml" />
+    <Content Include="Views\Group\Index.cshtml" />
+    <Content Include="Views\Group\Create.cshtml" />
+    <Content Include="Views\Group\Edit.cshtml" />
+    <Content Include="Views\Group\Delete.cshtml" />
+    <Content Include="Views\Group\MyGroups.cshtml" />
+    <Content Include="Views\Group\Details.cshtml" />
+    <Content Include="Views\User\SearchUser.cshtml" />
+    <Content Include="Views\Group\AddMember.cshtml" />
+    <Content Include="Views\Group\CreatePost.cshtml" />
+
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
