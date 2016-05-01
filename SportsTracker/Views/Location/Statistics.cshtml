@@ -19,8 +19,11 @@
     <div class="tab-pane fade" id="timeDistance">
         <canvas id="tdGraph" width="800" height="350"></canvas>
     </div>
-    <div class="tab-pane fade" id="elevationDistance">Content inside tab C</div>
-</div>
+    <div class="tab-pane fade" id="elevationDistance">
+        <canvas id="elevationDistanceGraph" width="800" height="350"></canvas>
+    </div>
+    @*<div class="tab-pane fade" id="elevationDistance">Content inside tab C</div>
+</div>*@
 
 @section scripts
 {
@@ -155,5 +158,72 @@
             console.log(myChart1);
         }
     </script>
-}
+    
+    <script>
+        Chart.defaults.global.responsive = true;
 
+        var labels2 = [];
+        labels2.push(0);
+        var data2 = [];
+        data2.push(0);
+        $.get("/Location/GetElevetionVersusdistanceGraphData/@ViewBag.Id", function (response, status) {
+
+            for (var i = 0; i < response.length; i++) {
+                labels2.push(i + 1);
+                data2.push(response[i]);
+            }
+            console.log(labels2);
+            console.log(data2);
+            createChart2();
+        });
+
+        function createChart2() {
+            var ctx2 = document.getElementById("elevationDistanceGraph").getContext("2d");
+            var myChart2 = new Chart(ctx2, {
+                type: 'bar',
+                data: {
+                    labels: labels2,
+                    datasets: [{
+                        label: 'Elevation(m)/Distance(Km)',
+                        //backgroundColor: "#4385A0",
+                        backgroundColor: "#1AB394",
+                        lineTension: 0,
+                        //borderColor: "#036767",
+                        data: data2
+                    }]
+                },
+                options: {
+                    scales: {
+                        xAxes: [{
+                            display: true,
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Distance(Km)',
+                                fontSize: 20
+                            }
+                        }],
+                        yAxes: [{
+                            display: true,
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Elevation(meter)',
+                                fontSize: 20
+                            },
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    },
+                    responsive: true,
+                    xAxes: [{
+                        display: false
+                    }]
+                }
+            });
+
+
+            console.log(myChart2);
+        }
+    </script>
+}
+</div>
