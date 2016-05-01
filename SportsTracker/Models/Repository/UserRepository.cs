@@ -16,6 +16,25 @@ namespace SportsTracker.Models.Repository
             db = new SportsTrackerContext();
         }
 
+        public List<User> SearchUser(string searchBy, string search)
+        {
+            List<User> users = new List<User>();
+            if (searchBy == "Email")
+                users = db.Users.Where(x => x.Email.StartsWith(search)).ToList();
+            else if (searchBy=="Username")
+            {
+                users = db.Users.Where(x => x.UserName.StartsWith(search)).ToList();
+            }
+            else if (searchBy == "Lastname")
+            {
+                users = db.Users.Where(x => x.Lastname.StartsWith(search)).ToList();
+            }
+
+            else users = db.Users.Where(x => x.Firstname.StartsWith(search)).ToList();
+
+            return users;
+        } 
+
         //insert into User(userName) values ('a')
         public bool AddUser(User user)
         {
@@ -48,7 +67,7 @@ namespace SportsTracker.Models.Repository
         //select * from user where id = 1
         public User GetUserById(int userId)
         {
-            return db.Users.SingleOrDefault(u => u.Id == userId);
+            return db.Users.SingleOrDefault(u => u.UserProfileId == userId);
         }
     }
 }

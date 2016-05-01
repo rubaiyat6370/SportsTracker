@@ -94,7 +94,7 @@ namespace SportsTracker.Controllers
                     post.UserId = WebSecurity.CurrentUserId;
                     post.CreatedOn = DateTime.Now;
                     _postRepository.AddPost(post);
-                    return RedirectToAction("Index");
+                    return RedirectToAction("MyPosts");
                 
             }
             return RedirectToAction("Login", "Account");
@@ -132,6 +132,8 @@ namespace SportsTracker.Controllers
             return RedirectToAction("Login", "Account");
         }
 
+       
+
         //
         // GET: /Post/Delete/5
 
@@ -157,7 +159,7 @@ namespace SportsTracker.Controllers
             {
                 if (_postRepository.DeletePost(post))
                 {
-                    return RedirectToAction("Index");
+                    return RedirectToAction("MyPosts");
                 }
                 return View(post);
             }

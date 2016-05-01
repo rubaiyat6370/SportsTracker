@@ -13,9 +13,12 @@ namespace SportsTracker.Controllers
     {
         UserRepository _userRepository = new UserRepository();
 
-        public ActionResult Index()
+        public ActionResult SearchUser(string searchBy, string search)
         {
-            return View();
+            List<User> users = new List<User>();
+            users = _userRepository.SearchUser(searchBy, search);
+            return Json(users, JsonRequestBehavior.AllowGet);
+            //return View(users);
         }
 
         //
@@ -102,5 +105,12 @@ namespace SportsTracker.Controllers
                 return View();
             }
         }
+
+        public ActionResult Details()
+        {
+            throw new NotImplementedException();
+        }
+
+        
     }
 }
