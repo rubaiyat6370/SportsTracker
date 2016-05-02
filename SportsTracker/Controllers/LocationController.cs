@@ -195,7 +195,10 @@ namespace SportsTracker.Controllers
                 //var met = _metConditionRepository.GetMET(avgSpeed, activityTypeId);
                 // var cal = Math.Round(CalculateCalorie( met,weight, timeStamp),2);
                 var cal = Math.Round(CalculateCalorie(activityTypeId, avgSpeed, timeStamp), 2);
-
+                if (cal == 0.0)
+                {
+                    return RedirectToAction("Create", "User");
+                }
 
                 locationViewModel.BurnedCalorie = cal;
 
@@ -366,11 +369,16 @@ namespace SportsTracker.Controllers
         //}
         public double CalculateCalorie(int activityTypeId, double speed, double duration)
         {
+            var burnedCal=0.0;
             var user = userRepository.GetUserByProfileId(WebSecurity.CurrentUserId);
             //var user = userRepository.GetUserByProfileId(intuserID);
+            if (user == null)
+            {
+                return burnedCal;
+            }
             var weight = Convert.ToDouble(user.Weight);
             var met = _metConditionRepository.GetMET(speed, activityTypeId);
-            var burnedCal = met*weight*duration;
+            burnedCal = met*weight*duration;
             return burnedCal;
         }
 
