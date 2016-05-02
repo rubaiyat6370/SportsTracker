@@ -45,16 +45,16 @@
                         <div class="panel-body">
                             <div class="ibox-content">
                                 <div class="alert alert-success">
-                                    <a class="alert-link" href="#">Birthday </a>@Html.DisplayFor(modelItem => Model.User.Birthdate)
+                                    <a class="alert-link" href="#">Birthday &nbsp;&nbsp;&nbsp; </a>@Html.DisplayFor(modelItem => Model.User.Birthdate)
                                 </div>
                                 <div class="alert alert-info">
-                                    <a class="alert-link" href="#">Sex  </a>@Model.User.Gender
+                                    <a class="alert-link" href="#">Sex &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </a>@Model.User.Gender
                                 </div>
                                 <div class="alert alert-warning">
-                                    <a class="alert-link" href="#">Email  </a><a href="mailto:">@Model.User.Email</a>
+                                    <a class="alert-link" href="#">Email &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </a><a href="mailto:">@Model.User.Email</a>
                                 </div>
                                 <div class="alert alert-danger">
-                                    <a class="alert-link" href="#">Weight  </a>@Model.User.Weight
+                                    <a class="alert-link" href="#">Weight &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </a>@Model.User.Weight
                                 </div>
                             </div>
                         </div>
@@ -103,7 +103,7 @@
                     </div>
                 </div>
                 <div class="col-lg-4">
-                    <div class="panel panel-success ">
+                    <div class="panel panel-danger ">
                         <div class="panel-heading">
                             <h2>Activities</h2>
                         </div>
@@ -113,7 +113,7 @@
                             <div class="ibox-content">
                                 @foreach (var activity in Model.ActivityList)
                                 {
-                                    <div class="alert alert-success">
+                                    <div class="alert alert-danger">
                                         <a class="alert-link" href="#">Title </a><a href="/Location/Details/@activity.Id">@activity.ActivityType.Title</a>
                                     </div>
                                 }
