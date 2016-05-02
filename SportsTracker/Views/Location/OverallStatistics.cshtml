@@ -1,0 +1,291 @@
+﻿@{
+    ViewBag.Title = "Overall Statistics";
+}
+
+<h2>OverallStatistics</h2>
+<div class="row">
+    <div class="form-group col-md-6">
+        <label>Text Input</label>
+        <input class="form-control" type="number" id="numberOfDays">
+    </div>
+    <div class="form-group col-md-6">
+        <button class="btn btn-primary" id="submit" style="margin: 24px; margin-left: -15px;">
+            submit</button>
+    </div>
+</div>
+
+<div>
+    <ul class="nav nav-tabs">
+        <li class="nav active"><a href="#calory" data-toggle="tab">Total Calorie(Kcal)</a></li>
+        <li class="nav"><a href="#distance" data-toggle="tab">Total Distance(Km)</a></li>
+        <li class="nav"><a href="#duration" data-toggle="tab">Total Time Duration(hr)</a></li>
+    </ul>
+
+    <!-- Tab panes -->
+    <div class="tab-content">
+        <div class="tab-pane fade in active" id="calory">
+            <canvas id="caloryChart" width="800" height="350"></canvas>
+        </div>
+        <div class="tab-pane fade" id="distance">
+            <canvas id="distanceChart" width="800" height="350"></canvas>
+        </div>
+        <div class="tab-pane fade" id="duration">
+            <canvas id="durationChart" width="800" height="350"></canvas>
+        </div>
+    </div>
+</div>
+
+
+@section scripts
+{
+    <script type="text/javascript" src="~/Scripts/Chart.js"></script>
+
+    <script>
+
+        function getFormattedDate(date) {
+            var dd = date.getDate();
+            var mm = date.getMonth() + 1; //January is 0!
+
+            var yyyy = date.getFullYear();
+            if (dd < 10) {
+                dd = '0' + dd;
+            }
+            if (mm < 10) {
+                mm = '0' + mm;
+            }
+            return dd + '/' + mm + '/' + yyyy;
+        }
+
+        var labels = [];
+        var calories = [];
+        var distances = [];
+        var durations = [];
+
+        var myChart1 = null;
+        var myChart2 = null;
+        var myChart3 = null;
+
+        $("#submit").click(function() {
+            labels = [];
+            calories = [];
+            distances = [];
+            durations = [];
+
+
+            var numberOfDays = $("#numberOfDays").val();
+            $.get("/Location/FromDayToDayStatistics?numberOfDays=" + numberOfDays, function(response, status) {
+                console.log(response);
+                for (var i = 0; i < response.length; i++) {
+                    labels.push(getFormattedDate(new Date(parseInt(response[i].CreatedOn.substr(6)))));
+                    calories.push(response[i].Calorie);
+                    distances.push(response[i].Distance);
+                    durations.push(response[i].Duration);
+                }
+
+                var activetab = $('.nav-tabs .active').find('a').attr('href');
+
+                if (activetab == "#calory") {
+
+                    createCaloryChart();
+                }
+                if (activetab == "#distance") {
+
+                    createDistanceChart();
+                }
+                if (activetab == "#duration") {
+
+                    createDurationChart();
+                }
+            });
+
+
+        });
+
+        $.get("/Location/FromDayToDayStatistics/", function(response, status) {
+            console.log(response);
+            for (var i = 0; i < response.length; i++) {
+                console.log(response[i].CreatedOn);
+
+
+                labels.push(getFormattedDate(new Date(parseInt(response[i].CreatedOn.substr(6)))));
+                calories.push(response[i].Calorie);
+                distances.push(response[i].Distance);
+                durations.push(response[i].Duration);
+            }
+            //console.log(data);
+            createCaloryChart();
+            /*createDistanceChart();
+            createDurationChart();*/
+        });
+
+
+        $('a[data-toggle="tab"]').on('shown.bs.tab', function(e) {
+            var target = $(e.target).attr("href"); // activated tab
+            var selectedTabCanvasId = $(target).find("canvas").attr("id");
+            if (selectedTabCanvasId == "caloryChart") {
+
+                createCaloryChart();
+            }
+            if (selectedTabCanvasId == "distanceChart") {
+
+                createDistanceChart();
+            }
+            if (selectedTabCanvasId == "durationChart") {
+
+                createDurationChart();
+            }
+
+        });
+
+        function createCaloryChart() {
+            if (myChart1 != null) {
+                myChart1.destroy();
+            }
+            var ctx1 = document.getElementById("caloryChart").getContext("2d");
+            myChart1 = new Chart(ctx1, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Distance(Km)/Time(hr)',
+                        //backgroundColor: "#4385A0",
+                        backgroundColor: "#1AB394",
+                        lineTension: 0,
+                        //borderColor: "#036767",
+                        data: calories
+                    }]
+                },
+                options: {
+                    scales: {
+                        xAxes: [{
+                            display: true,
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Date(hr)',
+                                fontSize: 20
+                            }
+                        }],
+                        yAxes: [{
+                            display: true,
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Calorie',
+                                fontSize: 20
+                            },
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    },
+                    responsive: true,
+                    xAxes: [{
+                        display: false
+                    }]
+                }
+            });
+
+
+        }
+
+        function createDistanceChart() {
+            if (myChart2 != null) {
+                myChart2.destroy();
+            }
+            var ctx2 = document.getElementById("distanceChart").getContext("2d");
+            myChart2 = new Chart(ctx2, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Distance(Km)/Time(hr)',
+                        //backgroundColor: "#4385A0",
+                        backgroundColor: "#1AB394",
+                        lineTension: 0,
+                        //borderColor: "#036767",
+                        data: distances
+                    }]
+                },
+                options: {
+                    scales: {
+                        xAxes: [{
+                            display: true,
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Date',
+                                fontSize: 20
+                            }
+                        }],
+                        yAxes: [{
+                            display: true,
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Distance(Km)',
+                                fontSize: 20
+                            },
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    },
+                    responsive: true,
+                    xAxes: [{
+                        display: false
+                    }]
+                }
+            });
+
+
+        }
+
+        function createDurationChart() {
+            if (myChart3 != null) {
+                myChart3.destroy();
+            }
+            var ctx3 = document.getElementById("durationChart").getContext("2d");
+            myChart3 = new Chart(ctx3, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Distance(Km)/Time(hr)',
+                        //backgroundColor: "#4385A0",
+                        backgroundColor: "#1AB394",
+                        lineTension: 0,
+                        //borderColor: "#036767",
+                        data: durations
+                    }]
+                },
+                options: {
+                    scales: {
+                        xAxes: [{
+                            display: true,
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Date',
+                                fontSize: 20
+                            }
+                        }],
+                        yAxes: [{
+                            display: true,
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Duration',
+                                fontSize: 20
+                            },
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    },
+                    responsive: true,
+                    xAxes: [{
+                        display: false
+                    }]
+                }
+            });
+
+
+        }
+
+    </script>
+}

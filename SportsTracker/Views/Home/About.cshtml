@@ -1,0 +1,35 @@
+﻿@{
+    ViewBag.Title = "About";
+}
+
+<hgroup class="title">
+    <h1>@ViewBag.Title</h1>
+    
+</hgroup>
+
+<article>
+    <p>
+        <b>Software Project Lab-2</b>
+        <br/><b>Sports Tracker</b>
+        <br/>
+        <b>Group Members:</b> 
+        <br/> 
+        Rubaiyat Jahan Mumu
+        <br/>
+        Syeda Tasnim Fabiha
+    </p>
+    <p>
+        We will make fitness fun and help you to stay motivated
+    </p>
+
+</article>
+
+<aside>
+   
+   
+    <ul>
+        <li>@Html.ActionLink("Home", "Index", "Home")</li>
+        <li>@Html.ActionLink("About", "About", "Home")</li>
+        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+    </ul>
+</aside>

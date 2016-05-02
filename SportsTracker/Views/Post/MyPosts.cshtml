@@ -1,0 +1,53 @@
+﻿@{
+    ViewBag.Title = "MyPosts";
+}
+
+<div id="title">
+    <h1 style="color: #380B61">My Posts</h1>
+</div>
+
+
+<div>
+    @foreach (var post in Model)
+    {
+        <div class="row " id="post">
+            <div class="col-lg-12">
+                <div class="panel panel-info">
+                    <div class="panel-heading lead">
+                        <a class="postTile" href="/Post/Details/@post.Id">@post.Title</a>
+                    </div>
+                    <div class="panel-body">
+                        <blockquote>
+                            <p>@post.Description</p>
+                            <small>
+                                Posted by <cite title="Source Title"> @post.User.Firstname @post.User.Lastname</cite>
+                            </small>
+                        </blockquote>
+                    </div>
+                    <div class="panel-footer">
+
+                        <ul class="list-inline">
+                            <li>
+                                <span class="glyphicon glyphicon-time"></span>Posted on @post.CreatedOn
+                            </li>
+                            <li class="col-lg-offset-7 ">
+                                @Html.ActionLink("Edit Post", "Edit", new {id = post.Id})
+                            </li>
+                            <li>
+                                @Html.ActionLink("Delete", "Delete", new {id = post.Id})
+                            </li>
+                        </ul>
+
+                    </div>
+                </div>
+            </div>
+            
+            
+
+        </div>
+
+    }
+    <p>
+        <h4>@Html.ActionLink("Create New Post", "Create")</h4>
+    </p>
+</div>

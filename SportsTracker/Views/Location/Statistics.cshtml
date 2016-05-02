@@ -1,0 +1,229 @@
+﻿@{
+    ViewBag.Title = "Statistics";
+}
+
+<h2>Statistics</h2>
+
+
+<ul class="nav nav-tabs">
+    <li class="nav active"><a href="#distanceTime" data-toggle="tab">Distance(Km)/Time(hr)</a></li>
+    <li class="nav"><a href="#timeDistance" data-toggle="tab">Time(hr)/Distance(Km)</a></li>
+    <li class="nav"><a href="#elevationDistance" data-toggle="tab">Elevation(m)/Distance(Km)</a></li>
+</ul>
+
+<!-- Tab panes -->
+<div class="tab-content">
+    <div class="tab-pane fade in active" id="distanceTime">
+        <canvas id="myChart" width="800" height="350"></canvas>
+    </div>
+    <div class="tab-pane fade" id="timeDistance">
+        <canvas id="tdGraph" width="800" height="350"></canvas>
+    </div>
+    <div class="tab-pane fade" id="elevationDistance">
+        <canvas id="elevationDistanceGraph" width="800" height="350"></canvas>
+    </div>
+    @*<div class="tab-pane fade" id="elevationDistance">Content inside tab C</div>
+</div>*@
+
+@section scripts
+{
+    <script type="text/javascript" src="~/Scripts/Chart.js"></script>
+
+    <script>
+        var labels = [];
+        labels.push(0);
+        var data = [];
+        data.push(0);
+        $.get("/Location/GetDistanceVersusTimeGraphData/@ViewBag.Id", function (response, status) {
+           
+            for (var i = 0; i < response.length; i++) {
+                labels.push(i+1);
+                data.push(response[i]);
+            }
+            //console.log(data);
+            createChart();
+        });
+
+        function createChart() {
+            var ctx = document.getElementById("myChart").getContext("2d");
+            var myChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Distance(Km)/Time(hr)',
+                        //backgroundColor: "#4385A0",
+                        backgroundColor: "#1AB394",
+                        lineTension : 0,
+                        //borderColor: "#036767",
+                        data: data
+                    }]
+                },
+                options: {
+                    scales: {
+                        xAxes: [{
+                            display: true,
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Time(hr)',
+                                fontSize : 20
+                            }
+                        }],
+                        yAxes: [{
+                            display: true,
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Distance(Km)',
+                                fontSize : 20
+                            },
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    },
+                    responsive: true,
+                    xAxes: [{
+                        display: false
+                    }]
+                }
+            });
+
+
+            console.log(myChart);
+        }
+            
+    </script>
+    
+    <script>
+        var labels1 = [];
+        labels1.push(0);
+        var data1 = [];
+        data1.push(0);
+        $.get("/Location/GetSpeedVersusDistanceGraphData/@ViewBag.Id", function (response, status) {
+
+            for (var i = 0; i < response.length; i++) {
+                labels1.push(i + 1);
+                data1.push(response[i]);
+            }
+            console.log(labels1);
+            console.log(data1);
+            createChart1();
+        });
+
+        function createChart1() {
+            var ctx1 = document.getElementById("tdGraph").getContext("2d");
+            var myChart1 = new Chart(ctx1, {
+                type: 'line',
+                data: {
+                    labels: labels1,
+                    datasets: [{
+                        label: 'Time(hr)/Distance(Km)',
+                        //backgroundColor: "#4385A0",
+                        backgroundColor: "#1AB394",
+                        lineTension: 0,
+                        //borderColor: "#036767",
+                        data: data1
+                    }]
+                },
+                options: {
+                    scales: {
+                        xAxes: [{
+                            display: true,
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Distance(Km)',
+                                fontSize: 20
+                            }
+                        }],
+                        yAxes: [{
+                            display: true,
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Time(hr)',
+                                fontSize: 20
+                            },
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    },
+                    responsive: true,
+                    xAxes: [{
+                        display: false
+                    }]
+                }
+            });
+
+
+            console.log(myChart1);
+        }
+    </script>
+    
+    <script>
+        Chart.defaults.global.responsive = true;
+
+        var labels2 = [];
+        labels2.push(0);
+        var data2 = [];
+        data2.push(0);
+        $.get("/Location/GetElevetionVersusdistanceGraphData/@ViewBag.Id", function (response, status) {
+
+            for (var i = 0; i < response.length; i++) {
+                labels2.push(i + 1);
+                data2.push(response[i]);
+            }
+            console.log(labels2);
+            console.log(data2);
+            createChart2();
+        });
+
+        function createChart2() {
+            var ctx2 = document.getElementById("elevationDistanceGraph").getContext("2d");
+            var myChart2 = new Chart(ctx2, {
+                type: 'bar',
+                data: {
+                    labels: labels2,
+                    datasets: [{
+                        label: 'Elevation(m)/Distance(Km)',
+                        //backgroundColor: "#4385A0",
+                        backgroundColor: "#1AB394",
+                        lineTension: 0,
+                        //borderColor: "#036767",
+                        data: data2
+                    }]
+                },
+                options: {
+                    scales: {
+                        xAxes: [{
+                            display: true,
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Distance(Km)',
+                                fontSize: 20
+                            }
+                        }],
+                        yAxes: [{
+                            display: true,
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Elevation(meter)',
+                                fontSize: 20
+                            },
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    },
+                    responsive: true,
+                    xAxes: [{
+                        display: false
+                    }]
+                }
+            });
+
+
+            console.log(myChart2);
+        }
+    </script>
+}
+</div>
