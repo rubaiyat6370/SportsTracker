@@ -61,6 +61,19 @@ namespace SportsTracker.Models.Repository
             return grpSet;
 
             //return db.Groups.Where(p => p.UserId == WebSecurity.CurrentUserId).ToList();
+        }
+
+        public ISet<Group> GetGroupsByUserId(int id)
+        {
+            var groups = from g in db.Groups
+                         join member in db.UserGroupRelations on g.Id equals member.Groupid
+                         where (member.UserId ==id)
+                         select g;
+            var list = groups.ToList();
+            ISet<Group> grpSet = new HashSet<Group>(list);
+            return grpSet;
+
+            //return db.Groups.Where(p => p.UserId == WebSecurity.CurrentUserId).ToList();
         } 
 
         //select * from user where id = 1

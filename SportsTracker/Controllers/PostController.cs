@@ -66,6 +66,8 @@ namespace SportsTracker.Controllers
         public ActionResult Details(int id)
         {
             Post post = _postRepository.GetPostById(id);
+            User user = _userRepository.GetUserById(post.UserId);
+            ViewBag.User = user;
             if (post == null)
             {
                 return HttpNotFound();
