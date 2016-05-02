@@ -30,6 +30,9 @@
         padding-top: 5px;
         padding-bottom: 0;
     }
+    p:first-letter {
+    text-transform: uppercase;
+}
 </style>
 
 
@@ -58,9 +61,12 @@
                     <div class="panel-group">
                         <div class="panel-group">
                             <div class="col-lg-4">
-                                @u.Firstname @u.Lastname
+                               <a href="/User/ProfileDetails/@u.UserProfileId">@u.Firstname  &nbsp; @u.Lastname</a>
                             </div>
-                            @Html.ActionLink("Remove", "RemoveMember", new { groupId = Model.GroupId, userId = u.UserProfileId })
+                            @if (WebSecurity.CurrentUserId==u.UserProfileId)
+                            {
+                                @Html.ActionLink("Remove", "RemoveMember", new { groupId = Model.GroupId, userId = u.UserProfileId })
+                            }
                         </div>
                     </div>
                 }
@@ -95,14 +101,19 @@
                             </p>
                         </div>
                     </div>
+                    <div class="panel-footer">
+                        @if (WebSecurity.CurrentUserId == p.UserId)
+                        {
+                            
+                            <div class="panel-group">
+                                @Html.ActionLink("Create Post", "CreatePost", new { id = Model.GroupId })
+                            </div>
+                        }
+                    </div>
                 }
                 <div class="panel-footer">
-
                     <div class="panel-group">
                         @Html.ActionLink("Add member", "AddMember", new { groupId = Model.GroupId })
-                    </div>
-                    <div class="panel-group">
-                        @Html.ActionLink("Create Post", "CreatePost", new { id = Model.GroupId })
                     </div>
                 </div>
             </div>
