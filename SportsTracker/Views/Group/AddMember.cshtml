@@ -1,0 +1,46 @@
+﻿@{
+    ViewBag.Title = "AdduserToGroup";
+}
+
+<h2>Add Member</h2>
+
+@*@foreach (var user in Model)
+{
+    <div>@user.Firstname</div>
+    <a href="/Group/AdduserToGroup">add</a>
+}*@
+
+@Html.RadioButton("searchBy", "Firstname", true) <text>First Name</text>
+@Html.RadioButton("searchBy", "Lastname") <text>Last Name</text>
+@Html.RadioButton("searchBy", "Email") <text>Email</text>
+@Html.RadioButton("searchBy", "Username") <text>Username</text>
+<br />
+@Html.TextBox("search") <input type="submit" id="searchButton" value="Search"/>
+
+<div id="searchResult"></div>
+
+
+
+@section scripts {
+    <script>
+        $("#searchButton").click(function() {
+
+            var searchBy = $("input[name='searchBy']:checked").val();
+            var search = $("#search").val();
+
+            $.get("/User/SearchUser?searchBy=" + searchBy + "&search=" + search, function(response, status) {
+
+                var tableDataRow = "";
+                for (var i = 0; i < response.length; i++) {
+                    tableDataRow = tableDataRow + '<tr>' + '<td>' + response[i].Firstname + '</td><td>' + response[i].Lastname + '</td><td>' + response[i].UserName + '</td><td>' + response[i].Weight + '</td><td>' + response[i].Gender + '</td><td><a href="mailto:' + response[i].Email + '">' + response[i].Email + '</a></td><td>' + response[i].Age + '</td><td><a href="/Group/AddUserToGroup?groupId=@ViewBag.GroupId&userId=' + response[i].UserProfileId + '">Add</a></td></tr>';
+                }
+                var generatedhtml = '</br>'+'<table border="2"><tbody><tr align="center"><th>Firstname</th><th>Lastname</th><th>UserName</th><th>Weight</th><th>Gender</th><th>Email</th><th>Age</th><th>Action</th></tr> ' + tableDataRow +
+                    '</tbody></table>';
+
+                $("#searchResult").html(generatedhtml);
+                console.log(response);
+            });
+        });
+    </script>
+}
+@Html.ActionLink("Back to Group details", "Details", new { id = ViewBag.GroupId })

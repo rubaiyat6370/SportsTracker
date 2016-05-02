@@ -1,0 +1,43 @@
+﻿@model IEnumerable<SportsTracker.Models.ViewModel.PostViewModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div id="title">
+    <h1 style="color: #380B61">Recent Posts</h1>
+</div>
+
+
+<div>
+    @foreach (var post in Model)
+    {
+        <div class="row " id="post">
+            <div class="col-lg-12">
+                <div class="panel panel-info">
+                    <div class="panel-heading lead">
+                        <a class="postTile" href="/Post/Details/@post.Id">@post.Title</a>
+                    </div>
+                    <div class="panel-body">
+                        <blockquote lang=" ">
+                            <p>@post.Description</p>
+                            <small>
+                                Posted by <cite title="Source Title"> @post.User.Firstname @post.User.Lastname</cite>
+                            </small>
+                        </blockquote>
+                    </div>
+                    <div class="panel-footer">
+
+                        <ul class="list-inline">
+                            <li>
+                                <span class="glyphicon glyphicon-time"></span>Posted on @post.CreatedOn
+                            </li>
+                            
+                        </ul>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>

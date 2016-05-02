@@ -1,0 +1,32 @@
+﻿@model SportsTracker.Models.DbModel.Post
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Post</legend>
+
+    <div class="display-label">
+         <label for="Title"><strong>Post Title</strong></label>
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Title)
+    </div>
+
+    <div class="display-label">
+        <label for="Description"><strong>Post Description</strong></label>
+    </div>
+    <div class="display-field " >
+        @Html.DisplayFor(model => model.PostDescription)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CreatedOn)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
