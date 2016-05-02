@@ -161,7 +161,7 @@
             <!-- /.navbar-top-links -->
 
             <div class="navbar-default sidebar" role="navigation" style="background: #2C3E50;">
-                <div class="sidebar-nav navbar-collapse" style="height: 685px;">
+                <div class="sidebar-nav navbar-collapse" style="height: 540px;">
                     <ul class="nav" id="side-menu">
 
                         <li>
@@ -178,7 +178,7 @@
                                     <li>
                                         <a href="/User/Create">Edit Information</a>
                                     </li>
-                                   
+
                                 </ul>
                                 <!-- /.nav-second-level -->
                             </li>
@@ -231,7 +231,20 @@
                                 <a href="/Location/OverallStatistics"><i class="fa fa-bar-chart-o fa-fw"></i>Statistics Profile</a>
                             </li>
                             
-                            
+                            <li>
+                                <a href="#"><i class="fa fa-check fa-fw"></i>Target Challenge<span class="fa arrow"></span></a>
+                                <ul class="nav nav-second-level">
+                                    <li>
+                                        <a href="/TargetGoal/SetGoal">Set Goal</a>
+                                    </li>
+                                    <li>
+                                        <a href="/TargetGoal/CheckGoalStatus">Check Last Goal Status</a>
+                                    </li>
+
+
+                                </ul>
+                                <!-- /.nav-second-level -->
+                            </li>
                             
                           
                         }
@@ -256,14 +269,15 @@
                 <section class="content-wrapper main-content clear-fix">
                     @RenderBody()
                 </section>
+                <i style="font-family: monospace; color: black; margin-left: 270px;">Copyright &copy; SportsTracker, 2016</i>
+
             </div>
 
             <!-- /.row -->
         </div>
         <!-- /#page-wrapper -->
 
-            <i style="font-family: monospace; color: #6B3838; margin-left: 270px;">Copyright &copy; SportsTracker, 2016</i>
-        
+
 
     </div>
     <!-- /#wrapper -->
