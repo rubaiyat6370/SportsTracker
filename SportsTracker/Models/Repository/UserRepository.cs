@@ -33,7 +33,9 @@ namespace SportsTracker.Models.Repository
             else users = db.Users.Where(x => x.Firstname.StartsWith(search)).ToList();
 
             return users;
-        } 
+        }
+
+      
 
         //insert into User(userName) values ('a')
         public bool AddUser(User user)

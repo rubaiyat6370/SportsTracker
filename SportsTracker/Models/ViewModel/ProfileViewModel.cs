@@ -10,7 +10,7 @@ namespace SportsTracker.Models.ViewModel
     {
         public ISet<Group> Groups { get; set; }
         public List<Post> Posts { get; set; }
-        //public List<Activity> ActivityList { get; set; }
+        public List<Activity> ActivityList { get; set; }
         public User User { get; set; }
     }
 }

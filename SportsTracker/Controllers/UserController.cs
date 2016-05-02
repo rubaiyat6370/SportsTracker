@@ -28,13 +28,21 @@ namespace SportsTracker.Controllers
             //return View(users);
         }
 
+        public ActionResult Search(string searchBy, string search)
+        {
+            List<User> users = new List<User>();
+            users = _userRepository.SearchUser(searchBy, search);
+
+            return View(users);
+        }
+
         public ActionResult ProfileDetails(int id)
         {
             ProfileViewModel profileViewModel = new ProfileViewModel();
             profileViewModel.User = _userRepository.GetUserById(id);
             profileViewModel.Groups = _groupRepository.GetGroupsByUserId(id);
             profileViewModel.Posts = _postRepository.GetPostsByUserId(id);
-            //profileViewModel.ActivityList = _activityRepository.GetMyActivities();
+            profileViewModel.ActivityList = _activityRepository.GetOtherProfileActivities(id);
             return View(profileViewModel);
         }
         

@@ -1075,6 +1075,7 @@
     <Content Include="Views\Group\CreatePost.cshtml" />
     <Content Include="Views\Location\OverallStatistics.cshtml" />
     <Content Include="Views\User\ProfileDetails.cshtml" />
+    <Content Include="Views\User\Search.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
