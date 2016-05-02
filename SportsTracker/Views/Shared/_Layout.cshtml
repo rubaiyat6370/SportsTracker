@@ -169,6 +169,19 @@
                         </li>
                         @if (WebSecurity.IsAuthenticated)
                         {
+                            <li>
+                                <a href="#"><i class="fa fa-bicycle fa-fw"></i>Profile<span class="fa arrow"></span></a>
+                                <ul class="nav nav-second-level">
+                                    <li>
+                                        <a href="#">My Profile</a>
+                                    </li>
+                                    <li>
+                                        <a href="/User/Create">Edit Information</a>
+                                    </li>
+                                   
+                                </ul>
+                                <!-- /.nav-second-level -->
+                            </li>
                             
                             <li>
                                 <a href="#"><i class="fa fa-tasks fa-fw"></i>Post<span class="fa arrow"></span></a>
