@@ -1,0 +1,57 @@
+﻿@model SportsTracker.Models.ViewModel.LocationViewModel
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="row">
+    <h2>Routes</h2>
+</div>
+<div class="row">Distance: @Model.Distance Km</div>
+<div class="row">Averege Speed: @Model.Speed Kmph</div>
+<div class="row">Burned Calorie: @Model.BurnedCalorie kcal</div>
+
+<div id="map" style="height: 500px; width: 1048px"></div>
+<script>
+
+    // This example creates a 2-pixel-wide red polyline showing the path of William
+    // Kingsford Smith's first trans-Pacific flight between Oakland, CA, and
+    // Brisbane, Australia.
+    function getData() {
+        var coordinates = [];
+            @foreach (var gc in Model.GpsDatas)
+            {
+                @:coordinates.push(new google.maps.LatLng("@gc.Latitude", "@gc.Longitude"));
+            }
+            return coordinates;
+
+        }
+        function initMap() {
+
+            var coordinates = getData();
+
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 8,
+                center: coordinates[0],
+                mapTypeId: google.maps.MapTypeId.TERRAIN
+            });
+
+            var traveledPath = new google.maps.Polyline({
+                path: coordinates,
+                geodesic: true,
+                strokeColor: '#FF0000',
+                strokeOpacity: 1.0,
+                strokeWeight: 2
+            });
+
+            traveledPath.setMap(map);
+
+        }
+
+
+</script>
+
+<script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA6VqsQICGc_himwMOFk9TWRbQFSZkwvGg&callback=initMap">
+</script>
+
+

@@ -1,0 +1,40 @@
+﻿@model SportsTracker.Models.DbModel.Post
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div class="row" id="post">
+<div class="col-lg-12">
+    <div class="panel panel-info">
+        <div class="panel-heading lead">
+            <a class="postTile" href="/Post/Details/@Model.Id">@Model.Title</a>
+        </div>
+        <div class="panel-body">
+            <blockquote>
+                <p>@Model.PostDescription</p>
+                <small>
+                    Posted by <cite title="Source Title"> @ViewBag.User.Firstname @ViewBag.User.Lastname</cite>
+                </small>
+            </blockquote>
+        </div>
+        <div class="panel-footer">
+
+            <ul class="list-inline">
+                <li>
+                    <span class="glyphicon glyphicon-time"></span>Posted on @Model.CreatedOn
+                </li>
+                <li class="col-lg-offset-7 ">
+                    @Html.ActionLink("Edit Post", "Edit", new {id = Model.Id})
+                </li>
+                <li>
+                    @Html.ActionLink("Delete", "Delete", new {id = Model.Id})
+                </li>
+            </ul>
+
+        </div>
+    </div>
+</div>
+</div>

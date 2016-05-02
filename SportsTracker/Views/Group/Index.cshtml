@@ -1,0 +1,57 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<style>
+    #container {
+        background: #E3E6F5;
+        width: 100%;
+        height: 100%;
+    }
+
+    .panel-heading {
+        padding: 0;
+        font-size: x-large;
+        border-bottom: 15px solid transparent;
+        border-top-left-radius: 3px;
+        border-top-right-radius: 3px;
+    }
+</style>
+
+<h2 style="color:#160B65">All Groups</h2>
+
+<div class=" container-fluid">
+    @foreach (var group in Model)
+    {
+        <div class="row panel-body" id="container">
+
+            <div style="color: #1606F7;" class="panel-heading glyphicons-group blockquote" id="groupname">
+                @group.Groupname
+            </div>
+
+
+            <div class="panel-group col-lg-4">
+
+                <div class="row">
+                    <div class="panel-group glyphicon glyphicon-user">
+                        <a href="/Group/AddMember?groupId=@group.Id"> Add member or Join this Group </a>
+                        <br />
+                    </div>
+                    
+                    <div class="panel-group glyphicon glyphicon-level-up">
+                        @Html.ActionLink("See Details of this group", "Details", new { id = group.Id })
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <br />
+
+    }
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+
