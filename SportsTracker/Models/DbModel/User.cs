@@ -39,5 +39,6 @@ namespace SportsTracker.Models.DbModel
         [Required]
         public string Lastname { get; set; }
         public string UserName { get; set; }
+        public string ProfilePicturePath { get; set; }
     }
 }

@@ -54,6 +54,15 @@ namespace SportsTracker.Models.Repository
                 orderby p.CreatedOn descending
                 select p;
             return posts.ToList();
+        }
+
+        public List<Post> GetPostsByUserId(int id)
+        {
+            //return _db.Posts.Where(p => p.UserId == WebSecurity.CurrentUserId ).ToList();
+            var posts = from p in _db.Posts.Where(p => p.UserId == id)
+                        orderby p.CreatedOn descending
+                        select p;
+            return posts.ToList();
         } 
 
         public IQueryable<Post> GetLatestPosts(int numberOfPost)
