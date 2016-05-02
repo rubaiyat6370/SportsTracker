@@ -155,6 +155,7 @@ namespace SportsTracker.Controllers
 
             ViewBag.ActivityId = id;
             ViewBag.ActivityType = activity.ActivityType.Title;
+            ViewBag.UserProfileId = activity.UserProfileId;
             return View("~/Views/Location/CurrentActivity.cshtml", locationViewModel);
         }
 
@@ -218,6 +219,7 @@ namespace SportsTracker.Controllers
                 var isSuccess = _activityRepository.Add(activity);
                 ViewBag.ActivityId = activity.Id;
                 ViewBag.ActivityType = _activityTypeRepository.Get(activityTypeId).Title;
+                ViewBag.UserProfileId = activity.UserProfileId;
                 return View(locationViewModel);
             }
 
