@@ -2,15 +2,15 @@
     ViewBag.Title = "Overall Statistics";
 }
 
-<h2>OverallStatistics</h2>
+<h2>Overall Statistics</h2>
 <div class="row">
     <div class="form-group col-md-6">
-        <label>Text Input</label>
+        <label>Enter your desired days to show overall statistics</label>
         <input class="form-control" type="number" id="numberOfDays">
     </div>
     <div class="form-group col-md-6">
         <button class="btn btn-primary" id="submit" style="margin: 24px; margin-left: -15px;">
-            submit</button>
+            See Result</button>
     </div>
 </div>
 
@@ -169,7 +169,7 @@
                             display: true,
                             scaleLabel: {
                                 display: true,
-                                labelString: 'Calorie',
+                                labelString: 'Calorie(kcal)',
                                 fontSize: 20
                             },
                             ticks: {
@@ -269,7 +269,7 @@
                             display: true,
                             scaleLabel: {
                                 display: true,
-                                labelString: 'Duration',
+                                labelString: 'Duration(hr)',
                                 fontSize: 20
                             },
                             ticks: {

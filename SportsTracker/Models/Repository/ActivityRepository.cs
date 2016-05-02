@@ -34,6 +34,12 @@ namespace SportsTracker.Models.Repository
 
         }
 
+        public List<DbModel.Activity> GetOtherProfileActivities(int id)
+        {
+            var activities = _db.Activities.Where(activity => (activity.UserProfileId == id)).ToList();
+            return activities;
+        }
+
         public DbModel.Activity Get(int id)
         {
             var activity = _db.Activities.Find(id);
