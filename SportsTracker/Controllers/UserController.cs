@@ -74,7 +74,7 @@ namespace SportsTracker.Controllers
                 user.UserName = WebSecurity.CurrentUserName;
                 _userRepository.AddUser(user);
 
-                return RedirectToAction("Index","Home");
+                return RedirectToAction("ProfileDetails",new{id=user.UserProfileId});
             }
             catch
             {
@@ -87,20 +87,30 @@ namespace SportsTracker.Controllers
 
         public ActionResult Edit(int id)
         {
-            return View();
+            User usr = new User();
+            usr = _userRepository.GetUserById(id);
+            return View(usr);
         }
 
         //
         // POST: /User/Edit/5
 
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(User user, HttpPostedFileBase file)
         {
+
+            if (file != null && file.ContentLength > 0)
+            {
+                var fileName = Path.GetFileName(file.FileName);
+                var path = Path.Combine(Server.MapPath("~/Content/Images/ProfilePicture"), fileName);
+                file.SaveAs(path);
+                user.ProfilePicturePath = fileName;
+            }
+            
             try
             {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
+                _userRepository.EditUser(user);
+                return RedirectToAction("ProfileDetails", new { id = user.UserProfileId });
             }
             catch
             {

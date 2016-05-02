@@ -1035,7 +1035,6 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Views\User\Create.cshtml" />
-    <Content Include="Views\User\Edit.cshtml" />
     <Content Include="Views\User\Delete.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\Location\Direction.cshtml" />
@@ -1076,6 +1075,7 @@
     <Content Include="Views\Location\OverallStatistics.cshtml" />
     <Content Include="Views\User\ProfileDetails.cshtml" />
     <Content Include="Views\User\Search.cshtml" />
+    <Content Include="Views\User\Edit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
