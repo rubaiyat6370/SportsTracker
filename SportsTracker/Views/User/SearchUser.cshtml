@@ -14,7 +14,7 @@
     @Html.ActionLink("Create New", "Create")
 </p>
 
-@using (Html.BeginForm("SearchUser", "User",FormMethod.Get ))
+@using (Html.BeginForm("Search", "User",FormMethod.Get ))
 {
     <b>Search by:</b>
     @Html.RadioButton("searchBy", "Firstname", true) <text>First Name</text>

@@ -1,17 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using SportsTracker.Filters;
 using SportsTracker.Models.DbModel;
 using SportsTracker.Models.Repository;
+using SportsTracker.Models.ViewModel;
 using WebMatrix.WebData;
 
 namespace SportsTracker.Controllers
 {
+    [InitializeSimpleMembership]
     public class UserController : Controller
     {
         UserRepository _userRepository = new UserRepository();
+        GroupRepository _groupRepository = new GroupRepository();
+        PostRepository _postRepository = new PostRepository();
+        ActivityRepository _activityRepository = new ActivityRepository();
 
         public ActionResult SearchUser(string searchBy, string search)
         {
@@ -21,9 +28,23 @@ namespace SportsTracker.Controllers
             //return View(users);
         }
 
-        //
-        // GET: /User/Details/5
+        public ActionResult Search(string searchBy, string search)
+        {
+            List<User> users = new List<User>();
+            users = _userRepository.SearchUser(searchBy, search);
 
+            return View(users);
+        }
+
+        public ActionResult ProfileDetails(int id)
+        {
+            ProfileViewModel profileViewModel = new ProfileViewModel();
+            profileViewModel.User = _userRepository.GetUserById(id);
+            profileViewModel.Groups = _groupRepository.GetGroupsByUserId(id);
+            profileViewModel.Posts = _postRepository.GetPostsByUserId(id);
+            profileViewModel.ActivityList = _activityRepository.GetOtherProfileActivities(id);
+            return View(profileViewModel);
+        }
         
 
         //
@@ -38,15 +59,22 @@ namespace SportsTracker.Controllers
         // POST: /User/Create
 
         [HttpPost]
-        public ActionResult Create(User user)
+        public ActionResult Create(User user, HttpPostedFileBase file)
         {
             try
             {
+                if (file != null && file.ContentLength > 0)
+                {
+                    var fileName = Path.GetFileName(file.FileName);
+                    var path = Path.Combine(Server.MapPath("~/Content/Images/ProfilePicture"), fileName);
+                    file.SaveAs(path);
+                    user.ProfilePicturePath = fileName;
+                }
                 user.UserProfileId = WebSecurity.CurrentUserId;
                 user.UserName = WebSecurity.CurrentUserName;
                 _userRepository.AddUser(user);
 
-                return RedirectToAction("Index","Home");
+                return RedirectToAction("ProfileDetails",new{id=user.UserProfileId});
             }
             catch
             {
@@ -59,20 +87,30 @@ namespace SportsTracker.Controllers
 
         public ActionResult Edit(int id)
         {
-            return View();
+            User usr = new User();
+            usr = _userRepository.GetUserById(id);
+            return View(usr);
         }
 
         //
         // POST: /User/Edit/5
 
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(User user, HttpPostedFileBase file)
         {
+
+            if (file != null && file.ContentLength > 0)
+            {
+                var fileName = Path.GetFileName(file.FileName);
+                var path = Path.Combine(Server.MapPath("~/Content/Images/ProfilePicture"), fileName);
+                file.SaveAs(path);
+                user.ProfilePicturePath = fileName;
+            }
+            
             try
             {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
+                _userRepository.EditUser(user);
+                return RedirectToAction("ProfileDetails", new { id = user.UserProfileId });
             }
             catch
             {

@@ -4,64 +4,106 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Group Details</h2>
+<style>
+    #container {
+        background: #E3E6F5;
+        width: 100%;
+        height: 100%;
+    }
 
-<fieldset>
-    
+    .panel-heading {
+        padding-left: 10px;
+        font-size: x-large;
+        border-bottom: 15px solid transparent;
+        border-top-left-radius: 3px;
+        border-top-right-radius: 3px;
+        color: #0C46B3;
+        background-color: #E4E4E3;
+    }
+    .panel {
+        color: #620863;
+        background: #F2F5FB;
+    }
 
-    <div class="display-label">
-        <label for="Groupname"><strong>Group Name</strong></label>
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Groupname)
-    </div>
+    .panel-group {
+        padding: 10px;
+        padding-top: 5px;
+        padding-bottom: 0;
+    }
+</style>
 
-    <div class="display-label">
-        <label for="GroupMembers"><strong>Group members</strong></label>
-    </div>
-    <div>
-        @if (Model.Users.Count == 0)
-        {
-            <div>
-                No User added
+
+
+    <div class="container">
+
+        <div >
+           
+            <div class="panel-heading">
+                <label for="Groupname"><strong>@Model.Groupname</strong></label>
             </div>
-        }
-        @foreach (var u in Model.Users)
-        {
-            <div>
-                @u.Firstname @u.Lastname
-                @Html.ActionLink("Remove","RemoveMember",new{ groupId=Model.GroupId, userId=u.UserProfileId})
+        </div>
+        <br />
+            <div class="panel-heading">
+                <label for="GroupMembers"><strong>Group members</strong></label>
             </div>
-        }
-    </div>
-    <div class="display-label">
-        <label for="GroupPosts"><strong>Group Posts</strong></label>
-    </div>
-    <div>
-        @if (Model.PostsList.Count==0)
-        {
-            <div>
-                No Post added
+            <div class="panel">
+                @if (Model.Users.Count == 0)
+                {
+                    <div>
+                        No User added
+                    </div>
+                }
+                @foreach (var u in Model.Users)
+                {
+                    <div class="panel-group">
+                        <div class="panel-group">
+                            <div class="col-lg-4">
+                                @u.Firstname @u.Lastname
+                            </div>
+                            @Html.ActionLink("Remove", "RemoveMember", new { groupId = Model.GroupId, userId = u.UserProfileId })
+                        </div>
+                    </div>
+                }
             </div>
-        }
-        @foreach (var p in Model.PostsList)
-        {
-            <h4>Title</h4>
-            <div>
-                @p.Title
+            <div class="panel-heading">
+                <label for="GroupPosts"><strong>Group Posts</strong></label>
             </div>
-            <h4>Description</h4>
-            <div>
-                @p.PostDescription
+            <div class="panel">
+                @if (Model.PostsList.Count == 0)
+                {
+                    <div>
+                        No Post added
+                    </div>
+                }
+                @foreach (var p in Model.PostsList)
+                {
+                    <div class="panel-group">
+                        <div class="panel-group">
+                            <h4>Title</h4>
+
+                            @p.Title
+                        </div>
+
+                        <div class="panel-group">
+                            <h4>Description</h4>
+                            @p.PostDescription
+                        </div>
+                        <div class="panel-footer">
+
+                            <p class="glyphicon glyphicon-time">
+                                @p.CreatedOn
+                            </p>
+                        </div>
+                    </div>
+                }
+                <div class="panel-footer">
+
+                    <div class="panel-group">
+                        @Html.ActionLink("Add member", "AddMember", new { groupId = Model.GroupId })
+                    </div>
+                    <div class="panel-group">
+                        @Html.ActionLink("Create Post", "CreatePost", new { id = Model.GroupId })
+                    </div>
+                </div>
             </div>
-            <div>
-                @p.CreatedOn
-            </div>
-        }
-    </div>
-</fieldset>
-<p>
-    
-    @Html.ActionLink("Add member", "AddMember", new {  groupId=Model.GroupId  })
-    @Html.ActionLink("Create Post", "CreatePost", new { id = Model.GroupId })
-</p>
+</div>

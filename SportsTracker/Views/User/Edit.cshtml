@@ -1,7 +1,228 @@
-﻿@model SportsTracker.Models.Repository.UserRepository
+﻿@model SportsTracker.Models.DbModel.User
 
 @{
     ViewBag.Title = "Edit";
 }
+<style>
+   .panel-heading {
+       color: blue
+   } 
+   #container {
+       background-color: #D8E8F3;
+   }
+   b, strong {
+    font-weight: 700;
+    color: #0B62A2;
+}
+   .form-group {
+    margin-bottom: 15px;
+    margin-top: 15px;
+    padding-bottom: 15px;
+    background-color: aliceblue;
+}
 
-<h2>Edit</h2>
+</style>
+
+<div class="container" id="container">
+    <div class="row">
+        <div class="col-md-5 col-md-offset-3">
+            <div class="panel-group panel panel-default">
+                <section>
+
+                    <div class="panel">
+                        <h2 class="panel-heading" align="center">Edit Your Profile</h2>
+                    </div>
+                    <div class="panel-body panel-group">
+                        
+                            @*<form method="POST" action="Create">
+                            *@
+                            @using (Html.BeginForm("Edit", "User", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                            {
+                              <div class="form-group col-sm-12">
+                                    <label for="FirstName"><strong>First Name</strong></label>
+                                    <br />
+                                    <input class=" col-sm-12" type="text" name="Firstname" placeholder="First name" required="required" value="@Model.Firstname" />
+                                    <span class="field-validation-valid" data-valmsg-for="Firstname" data-valmsg-replace="true"></span>
+                                </div>
+
+                                <div class="form-group  col-sm-12">
+                                    <label for="LastName"><strong>Last Name</strong></label>
+                                    <br />
+                                    <input class=" col-sm-12" type="text" name="Lastname" placeholder="Last name" required="required" value="@Model.Lastname" />
+                                    <span class="field-validation-valid" data-valmsg-for="Lastname" data-valmsg-replace="true"></span>
+                                </div>
+
+                                <div>
+                                    <div class="form-group  col-sm-12" id="Gender">
+                                        <label for="Gender"><strong>Gender</strong> </label>
+                                        <br />
+                                        <div>
+                                            <select value="@Model.Gender" class="form-control " id="gender1" name="Gender">
+
+                                                <option>Male</option>
+
+                                                <option>Female</option>
+
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group  col-sm-12">
+                                    <label for="Age"><strong>Age</strong></label>
+                                    <br />
+                                    <input class=" col-sm-12" id="Age" type="number" name="Age" required="required" value="@Model.Age" />
+                                    <span class="field-validation-valid" data-valmsg-for="Age" data-valmsg-replace="true"></span>
+                                </div>
+
+
+                                <div class="form-group  col-sm-12">
+                                    <label for="Weight"><strong>Weight</strong></label>
+                                    <br />
+                                    <input class=" col-sm-12" type="number" name="Weight" required="required" value="@Model.Weight" />
+                                    <span class="field-validation-valid" data-valmsg-for="Weight" data-valmsg-replace="true"></span>
+                                </div>
+
+
+                                <div class="form-group  col-sm-12">
+                                    <label for="email"><strong>Email</strong></label>
+                                    <br />
+                                    <input class=" col-sm-12" type="email" id="email" placeholder="Enter email" name="Email" required="required" value="@Model.Email">
+                                    <span class="field-validation-valid" data-valmsg-for="Email" data-valmsg-replace="true"></span>
+                                </div>
+
+                        <input type="hidden" name="Birthdate"value="@Model.Birthdate"/>      
+                                <input type="hidden" name="UserName" value="@Model.UserName"/>  
+                                <input type="hidden" name="UserProfileId" value="@Model.UserProfileId" />
+                                <input type="hidden" name="Id" value="@Model.Id" />
+                                <div class="form-group col-sm-12">
+                                    <label for="ProfilePicture"><strong>Upload Picture</strong></label>
+                                    <br />
+                                    <input class=" col-sm-12" type="file" name="file" required="required" value="@Model.ProfilePicturePath" />
+                                    <span class="field-validation-valid" data-valmsg-for="ProfilePicture" data-valmsg-replace="true"></span>
+                                </div>
+
+                                <div class="form-group col-sm-12">
+                                    <input class="col-sm-12 btn-success" type="submit" value="Submit" />
+                                </div>
+                           @* </form>*@
+                        }
+
+                           
+
+</div>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+@*<h2>Edit Profile</h2>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+
+        <fieldset>
+            <legend>User</legend>
+
+            @Html.HiddenFor(model => model.Id)
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Age)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Age)
+                @Html.ValidationMessageFor(model => model.Age)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Weight)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Weight)
+                @Html.ValidationMessageFor(model => model.Weight)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Gender)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Gender)
+                @Html.ValidationMessageFor(model => model.Gender)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Email)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Email)
+                @Html.ValidationMessageFor(model => model.Email)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Birthdate)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Birthdate)
+                @Html.ValidationMessageFor(model => model.Birthdate)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.UserProfileId)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.UserProfileId)
+                @Html.ValidationMessageFor(model => model.UserProfileId)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Firstname)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Firstname)
+                @Html.ValidationMessageFor(model => model.Firstname)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Lastname)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Lastname)
+                @Html.ValidationMessageFor(model => model.Lastname)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.UserName)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.UserName)
+                @Html.ValidationMessageFor(model => model.UserName)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.ProfilePicturePath)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.ProfilePicturePath)
+                @Html.ValidationMessageFor(model => model.ProfilePicturePath)
+            </div>
+
+            <p>
+                <input type="submit" value="Save" />
+            </p>
+        </fieldset>
+    }
+
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+*@
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
