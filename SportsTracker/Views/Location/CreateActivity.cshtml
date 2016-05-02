@@ -1,21 +1,43 @@
 ﻿@{
     ViewBag.Title = "UploadFile";
 }
+<style type="text/css">
+    .lebel {
+        font-family: sans-serif;
+        font-size: 20px;
+        color: #13AD52;
+    }
+    
+    .container {
+       background-color: #B1F1ED; 
+    }
+</style>
+
 
 <h2>Upload Activity File</h2>
 @using (Html.BeginForm("CurrentActivity", "Location", FormMethod.Post, new { enctype = "multipart/form-data" }))
-{ 
-    foreach (var activity in Model)
-    {
-        <div>
-            <input type="radio" name="activityTypeId" value="@activity.Id" />@activity.Title
+{
+    <div class="container">
+        <div class="lebel">
+            Select a type of activity
         </div>
-    }
-    <br/>
+        <div>
+            @foreach (var activity in Model)
+            {
+                <div>
+                    <input type="radio" name="activityTypeId" value="@activity.Id" />@activity.Title
+                </div>
     
-    <input type="file" name="file" />
+            }
+        </div>
+        <br />
+        <div>
+            <input type="file" name="file" />
     
     
-    <br/>
-    <input type="submit" name="Submit" id="Submit" value="Submit" />
+            <br />
+            <input type="submit" name="Submit" id="Submit" value="Submit" class="btn btn-success" />
+        </div>
+    </div>
+    
 }
