@@ -28,9 +28,15 @@
             <a href="/Location/Statistics/@ViewBag.ActivityId" class="btn btn-success" style="padding: 9px;  margin-right: -70px">Show Statistics
             </a>
         </div>
-         <div class="col-md-2" style="text-align: right; padding-top: 15px; padding-right: 18px;">
-            <a href="/Location/DeleteActivity/@ViewBag.ActivityId" class="btn btn-danger" style="padding: 9px; margin-right: -25px">Delete Activity
-            </a>
+        <div class="col-md-2" style="text-align: right; padding-top: 15px; padding-right: 18px;">
+           @* <a href="/Location/DeleteActivity/@ViewBag.ActivityId" class="btn btn-danger" style="padding: 9px; margin-right: -25px">Delete Activity
+                </a>*@
+            @if(ViewBag.UserProfileId == WebSecurity.CurrentUserId)
+            {
+                <a href="/Location/DeleteActivity/@ViewBag.ActivityId" class="btn btn-danger" style="padding: 9px; margin-right: -25px">Delete Activity
+                </a>
+            }
+            
         </div>
 
     </div>

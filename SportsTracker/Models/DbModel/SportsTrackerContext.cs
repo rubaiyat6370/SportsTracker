@@ -23,5 +23,7 @@ namespace SportsTracker.Models.DbModel
         public DbSet<Activity> Activities { get; set; }
         public DbSet<ActivityType> ActivityTypes { get; set; }
         public DbSet<METCondition> MetConditions { get; set; }
+        public DbSet<SetGoal> SetGoals { get; set; }
+        
     }
 }
