@@ -1,0 +1,47 @@
+﻿@{
+    ViewBag.Title = "CheckGoalStatus";
+}
+
+<h2>Goal Status</h2>
+
+<div class="row">
+    <div class="table-responsive">
+        <table class="table table-striped table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>Property</th>
+                    <th>Goal</th>
+                    <th>Achieved</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+                <tr>
+                    <td>Calorie</td>
+                    <td>@Model.GoalCalorie Kcal</td>
+                    <td>@Model.AchivedCalorie Kcal</td>
+                    @if (Model.IsAchieved)
+                    {
+                        <td rowspan="2" style="color: green; font-weight: 800">Achieved
+                            <br/>
+                            <a href="/TargetGoal/SetGoal" class="btn btn-success">Set New Goal</a>
+                        </td>
+                    }
+                    else
+                    {
+                        <td rowspan="2" style="color: red; font-weight: 800">Not Achieved</td>
+                    }
+                    
+                </tr>
+                <tr>
+                    <td>Distance</td>
+                    <td>@Model.GaolDistance Km</td>
+                    <td>@Model.AchievedDistance Km</td>
+                    
+                </tr>
+                
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -22,12 +22,16 @@
                 <div class="col-sm-2">
                     <b>Duration:</b> @ac.Duration hour
                 </div>
-                <div class="col-md-2">
+                <div class="col-sm-2">
                     <b class="glyphicon glyphicon-time"></b>@ac.CreatedOn
                 </div>
                 <div class="col-sm-2">
-                    <a href="/Location/Details/@ac.Id">Details</a>
+                    <a href="/Location/Details/@ac.Id" style="text-decoration: none">Details</a>
+                    <a href="/Location/DeleteActivity/@ac.Id"  style="padding: 9px; margin-right: -25px; color: red; text-decoration: none" >Delete</a>
                 </div>
+                 @*<div class="col-sm-1" style="text-align: right; padding-top: 15px; padding-right: 18px;">
+                    <a href="/Location/DeleteActivity/@ac.Id"  style="padding: 9px; margin-right: -25px; color: red" >Delete</a>
+        </div>*@
             </div>
         </div>
     </div>

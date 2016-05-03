@@ -28,7 +28,7 @@ namespace SportsTracker.Models.Repository
 
         public List<DbModel.Activity> GetMyActivities()
         {
-            var activities = _db.Activities.Where(acticity => (acticity.UserProfileId == WebSecurity.CurrentUserId)).ToList();
+            var activities = _db.Activities.Where(acticity => (acticity.UserProfileId == WebSecurity.CurrentUserId)).OrderByDescending(p => p.CreatedOn).ToList();
 
             return activities;
 
@@ -53,6 +53,27 @@ namespace SportsTracker.Models.Repository
             _db.Activities.Attach(activity);
             _db.Entry(activity).State = EntityState.Deleted;
             return _db.SaveChanges() > 0;
+        }
+
+        public List<ActivityViewModel> GetActivityFromStartDateToEndDate(DateTime startDate, DateTime endDate)
+        {
+            var activity = (from ac in _db.Activities
+                where (ac.UserProfileId == WebSecurity.CurrentUserId && ac.CreatedOn >= startDate && ac.CreatedOn <= endDate)
+                select new ActivityViewModel
+                {
+                    Id = ac.Id,
+                    ActivityTypeTitle = ac.ActivityType.Title,
+                    ActivityTypeId = ac.ActivityTypeId,
+                    CreatedOn = ac.CreatedOn,
+                    Duration = ac.Duration,
+                    Speed = ac.Speed,
+                    Distance = ac.Distance,
+                    Calorie = ac.Calorie,
+                    FilePath = ac.FilePath,
+                    UserProfileId = ac.UserProfileId
+                }).ToList();
+
+            return activity;
         }
 
         public List<ActivityViewModel> GetDataFromDateRange(int numberOfDays)
