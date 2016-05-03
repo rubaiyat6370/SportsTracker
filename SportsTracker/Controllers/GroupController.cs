@@ -51,10 +51,12 @@ namespace SportsTracker.Controllers
            
             Group group = _groupRepository.GetGroupById(id);
             GroupViewModel groupViewModel = new GroupViewModel();
-
+            User user = new User();
             //groups = _groupRepository.GetGroupsList();
             //users = _userRepository.GetUsersList();
             //posts = _postRepository.GetPostsQuery();
+            ViewBag.User = _groupRelationRepository.isExist(id, WebSecurity.CurrentUserId);
+            
 
             groupViewModel.GroupId = group.Id;
             groupViewModel.Groupname = group.Groupname;

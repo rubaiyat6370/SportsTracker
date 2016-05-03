@@ -53,6 +53,10 @@ namespace SportsTracker.Models.Repository
             return _db.SaveChanges() > 0;
         }
 
-        
+        public bool isExist(int groupId, int userid)
+        {
+            bool whatever = _db.UserGroupRelations.Any(u => u.Groupid == groupId&u.UserId==userid);
+            return whatever;
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿@model SportsTracker.Models.ViewModel.GroupViewModel
+﻿@using SportsTracker.Models.DbModel
+@model SportsTracker.Models.ViewModel.GroupViewModel
 
 @{
     ViewBag.Title = "Details";
@@ -102,15 +103,20 @@
                         </div>
                     </div>
                     <div class="panel-footer">
-                        @if (WebSecurity.CurrentUserId == p.UserId)
-                        {
+                        
                             
-                            <div class="panel-group">
-                                @Html.ActionLink("Create Post", "CreatePost", new { id = Model.GroupId })
-                            </div>
-                        }
+                       
                     </div>
                 }
+                <div class="panel-footer">
+                    @if (ViewBag.User)
+                    {
+                        <div class="panel-group">
+                            @Html.ActionLink("Create Post", "CreatePost", new { id = Model.GroupId })
+                        </div>
+                    }
+
+                </div>
                 <div class="panel-footer">
                     <div class="panel-group">
                         @Html.ActionLink("Add member", "AddMember", new { groupId = Model.GroupId })
