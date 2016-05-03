@@ -1,0 +1,38 @@
+﻿@model SportsTracker.Models.DbModel.Group
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    <div id="body" align="center">
+        <h3 style="color: #0B173B" id="header">
+           Edit Group
+        </h3>
+        <form method="POST" >
+            <input type="hidden" name="Id" value="@Model.Id"/>
+            <div class=" form-group">
+                <label for="Groupname"><strong>Group Name</strong></label>
+                <br/>
+                <input id="name" class="text-box single-line" type="text" name="Groupname" data-val-required="The Price field is required." required="required" value="@Model.Groupname"/>
+                <span class="field-validation-valid" data-valmsg-for="Groupname" data-valmsg-replace="true"></span>
+            </div>
+            
+            <br/>
+            <p>
+                <input type="submit" id="submit" class="btn-info" value="Create"/>
+            </p>
+        </form>
+    </div>
+    
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

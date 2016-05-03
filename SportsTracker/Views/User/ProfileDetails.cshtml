@@ -1,0 +1,128 @@
+﻿@model SportsTracker.Models.ViewModel.ProfileViewModel
+
+@{
+    ViewBag.Title = "ProfileDetails";
+}
+<style>
+    
+</style>
+
+
+
+<div class="wrapper style1 first">
+    <article class="container" id="top">
+        <div class="row">
+
+            <div class="col-lg-4 ">
+                <br />
+                <br />
+                <br />
+                <br/>
+                <br />
+                <br />
+                <span class="image fit">
+                    <img class=" img-circle" alt="Cinque Terre" width="304" height="236" src="@Url.Content("~/Content/Images/ProfilePicture/" + @Model.User.ProfilePicturePath)" />
+                </span>
+            </div>
+            <div class="col-lg-7">
+                <header>
+                    <h1>
+                        Hi, I'm
+                        <strong>@Model.User.Firstname @Model.User.Lastname</strong>
+                    </h1>
+                </header>
+                <div>
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-title">
+
+                        </div>
+                    </div>
+
+                    <div class="panel panel-success">
+                        <div class="panel-heading">
+                            <h2>Profile Information</h2>
+                        </div>
+                        <div class="panel-body">
+                            <div class="ibox-content">
+                                <div class="alert alert-success">
+                                    <a class="alert-link" href="#">Birthday &nbsp;&nbsp;&nbsp; </a>@Html.DisplayFor(modelItem => Model.User.Birthdate)
+                                </div>
+                                <div class="alert alert-info">
+                                    <a class="alert-link" href="#">Sex &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </a>@Model.User.Gender
+                                </div>
+                                <div class="alert alert-warning">
+                                    <a class="alert-link" href="#">Email &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </a><a href="mailto:">@Model.User.Email</a>
+                                </div>
+                                <div class="alert alert-danger">
+                                    <a class="alert-link" href="#">Weight &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </a>@Model.User.Weight&nbsp;kg
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="panel panel-success ">
+                        <div class="panel-heading">
+                            <h2>Posts</h2>
+                        </div>
+                        <div class="panel-body">
+
+
+                            <div class="ibox-content">
+                                @foreach (var post in Model.Posts)
+                                {
+                                    <div class="alert alert-success">
+                                        <a class="alert-link" href="#">Title </a><a href="/Post/Details/@post.Id">@post.Title</a>
+                                    </div>
+                                }
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="panel panel-info ">
+                        <div class="panel-heading">
+                            <h2>Groups</h2>
+                        </div>
+                        <div class="panel-body">
+
+
+                            <div class="ibox-content">
+                                @foreach (var group in Model.Groups)
+                                {
+                                    <div class="alert alert alert-info">
+                                        <a class="alert-link" href="#">Title </a><a href="/Group/Details/@group.Id">@group.Groupname</a>
+                                    </div>
+                                }
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="panel panel-danger ">
+                        <div class="panel-heading">
+                            <h2>Activities</h2>
+                        </div>
+                        <div class="panel-body">
+
+
+                            <div class="ibox-content">
+                                @foreach (var activity in Model.ActivityList)
+                                {
+                                    <div class="alert alert-danger">
+                                        <a class="alert-link" href="#">Title </a><a href="/Location/Details/@activity.Id">@activity.ActivityType.Title</a>
+                                    </div>
+                                }
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </article>
+</div>
