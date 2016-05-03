@@ -1,0 +1,42 @@
+﻿@{
+    ViewBag.Title = "SetGoal";
+}
+
+
+
+  
+       
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  
+
+<di class="container">
+  <h2>Select Your Fitness Goal</h2>
+  
+
+  <div >
+    
+      
+      <div id="menu1">
+      <h3>Set the target calorie amount(in Kcal) and target disstance that will be achieved within target date.</h3>
+      <form role="form" method="POST" action="/TargetGoal/SetGoal">
+        <div class="form-group">
+            <label for="Calorie">Calorie:</label>
+            <input type="number" class="form-control" name="Calorie" style="width: 15%" placeholder="Kcal">
+
+            <br/>
+            <label for="Distance">Distance:</label>
+            <input type="number" class="form-control" name="Distance" style="width: 15%" placeholder="Km">
+            <br/>
+            <label for="endAfterNumberOfDays">Target days:</label>
+            <input type="number" class="form-control" name="endAfterNumberOfDays" style="width: 15%" placeholder="Days">
+            <br/>
+            <button class="btn btn-success" id="submit" >
+            Set Goal</button>
+        </div>
+          </form>
+    </div>
+      
+      
+    
+  </div>
